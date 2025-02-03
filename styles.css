@@ -28,14 +28,81 @@ nav ul li a {
     text-decoration: none;
 }
 
+
+/* Styles pour la présentation */
+.presentation {
+    display: flex; /* Utilise Flexbox pour aligner les éléments */
+    align-items: center; /* Centre verticalement les éléments */
+    justify-content: space-between; /* Espace entre le texte et l'image */
+    padding: 40px; /* Ajoute de l'espace autour de la présentation */
+}
+
+.profile-image {
+    width: 250px; /* Largeur de l'image */
+    height: 250px; /* Hauteur de l'image */
+    border-radius: 50%; /* Arrondir l'image en forme de cercle */
+    object-fit: cover; /* Couvre tout le conteneur sans déformer l'image */
+    margin-left: 20px;
+    margin-right: 100px
+}
+
+.text-content {
+    max-width: 1000px; /* Limite la largeur du texte */
+}
+
+
+/* Styles pour le CV */
+ul.actions {
+    display: -moz-flex; /*assurer la compatibilité avec les anciennes versions de Firefox*/
+    display: -webkit-flex; /*assurer la compatibilité avec les anciennes versions de Safari et Chrome*/
+    display: -ms-flex;	/*assurer la compatibilité avec les anciennes versions de Explorer*/
+    display: flex;
+    cursor: default;
+    list-style: none;
+    margin-top: 20px;
+    padding-left: 0;
+}
+
+
+/* Styles pour le bouton */
+.button {
+    background-color: #007bff; /* Couleur de fond du bouton */
+    color: white; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    padding: 15px 60px; /* Espacement interne */
+    text-decoration: none; /* Pas de soulignement */
+    border-radius: 10px; /* Coins arrondis */
+    cursor: pointer; /* Curseur en forme de main */
+    transition: background-color 0.3s; /* Transition pour l'effet au survol */
+}
+
+.button.primary {
+    background-color: #28a745; /* Couleur de fond pour le bouton primaire */
+}
+
+.button:hover {
+    background-color: #0056b3; /* Couleur du bouton au survol */
+}
+
+.button.primary:hover {
+    background-color: #218838; /* Couleur au survol pour le bouton primaire */
+}
+
+
 .projet {
     background: #ffffff;
-    margin: 20px;
-    padding: 15px;
-    border-radius: 5px;
+    margin: 40px;
+    margin-right: 100px;
+    padding-top : 10px;
+    padding-right : 40px;
+    padding-bottom : 20px;
+    padding-left : 40px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+
+/* Styles pour le pied de page */
 footer {
     text-align: center;
     padding: 20px;
