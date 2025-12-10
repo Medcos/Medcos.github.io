@@ -1,128 +1,606 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Médico DIOMANDE | Data Scientist & Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js for Data Viz -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons (Phosphor Icons - Lightweight & Clean) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Smooth Transitions */
+        .fade-in { animation: fadeIn 0.5s ease-in-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Chart Container Constraints */
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Active State for Project Cards */
+        .project-card.active {
+            border-left: 4px solid #0F766E; /* Teal-700 */
+            background-color: #F0FDFA; /* Teal-50 */
+        }
+        
+        /* Custom Scrollbar for Project List */
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>Bienvenue sur mon Portfolio</h1>
-        <nav>
-            <ul>
-                <li><a href="#présentation">Présentation</a></li>
-                <li><a href="#projets">Projets</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+<body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <!-- Logo / Name -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center gap-3">
+                        <div class="h-10 w-10 bg-teal-700 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                            M
+                        </div>
+                        <div>
+                            <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900">Médico DIOMANDE</h1>
+                            <p class="text-xs text-teal-600 font-semibold uppercase tracking-wider" id="nav-role">Data Scientist | Engineer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-about">About</a>
+                    <a href="#projects" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-projects">Projects</a>
+                    <a href="#skills" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-skills">Skills</a>
+                    <a href="#experience" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-exp">Experience</a>
+                    
+                    <!-- Language Switcher -->
+                    <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
+                        <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
+                        <button onclick="setLanguage('fr')" id="btn-fr" class="px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
+                    </div>
+
+                    <a href="mailto:dmedcos@yahoo.fr" class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" id="nav-contact">
+                        Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header id="about" class="bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="fade-in">
+                <!-- Badge -->
+                <span id="hero-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 mb-6">
+                    🚀 Open to Remote Opportunities
+                </span>
+                
+                <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                    Bridging Engineering <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">Rigor with Data Science.</span>
+                </h1>
+                
+                <p id="hero-desc" class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
+                    I combine 10+ years of technical project management with advanced expertise in Machine Learning, NLP, and MLOps to turn complex data into strategic business decisions.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="#projects" id="hero-cta" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition shadow-lg flex items-center gap-2">
+                        View Projects <i class="ph ph-arrow-right"></i>
+                    </a>
+                    <a href="https://github.com/medcos/Data-Science" target="_blank" class="bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                        <i class="ph ph-github-logo text-xl"></i> GitHub
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Viz (Radar Chart) -->
+            <div class="relative lg:h-[400px] flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-100 p-6 fade-in">
+                <div class="absolute top-4 left-4">
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" id="chart-title">Profile Matrix</h3>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="heroChart"></canvas>
+                </div>
+            </div>
+        </div>
     </header>
 
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
 
-    <section id="présentation">
-        <div class="presentation">
-            <div class="text-content">
-                <h2><strong>DIOMANDE Médico</strong></h2>
-                <h3><strong>Data Scientist</strong></h3>
-                <p style="text-align:justify;">
-                    Ingénieur en électromécanique spécialisé en "Production, Transport et Distribution d'Énergie Électrique", j'ai passé cinq ans à gérer des projets avant de plonger dans le monde captivant de la Data Science. 
-                    Mon parcours académique m'a offert une solide formation en statistiques et modélisation, que j'ai approfondie grâce à une formation spécialisée en Data Science. 
-                    Aujourd'hui, je me consacre à explorer les données, à en extraire des insights significatifs, à les visualiser de manière créative et à réaliser des prédictions précises. 
-                    Découvrez sur ce portfolio une sélection de projets qui illustrent mon parcours et ma passion pour l'analyse des données !
-                </p>
-                <ul class="actions">
-                    <li><a href="images/CV_Data_science.pdf" class="button primary" target="_blank"><b>CV</b></a></li>
-                </ul>
+        <!-- SKILLS / TECH STACK SECTION -->
+        <section id="skills" class="py-16 bg-slate-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 id="skills-title" class="text-3xl font-bold text-slate-900">Technical Expertise</h2>
+                    <p id="skills-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto">A full-stack data profile, from raw data engineering to model deployment.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Skill Cards generated by JS -->
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
+                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                            <i class="ph ph-code text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Python & SQL</h3>
+                        <p class="text-xs text-slate-500 mt-1">Pandas, NumPy, Adv. Queries</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
+                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                            <i class="ph ph-brain text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Machine Learning</h3>
+                        <p class="text-xs text-slate-500 mt-1">Scikit-learn, XGBoost, SHAP</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
+                        <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                            <i class="ph ph-cloud-arrow-up text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">MLOps & Cloud</h3>
+                        <p class="text-xs text-slate-500 mt-1">AWS, MLflow, Docker, Git</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
+                        <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                            <i class="ph ph-chart-bar text-2xl"></i>
+                        </div>
+                        <h3 class="font-bold text-slate-900">Data Viz</h3>
+                        <p class="text-xs text-slate-500 mt-1">Power BI, Streamlit, Matplotlib</p>
+                    </div>
+                </div>
             </div>
-            <img src="images/photo.JPG" alt="Photo de profil" class="profile-image"> 
+        </section>
+
+        <!-- PROJECTS SECTION (INTERACTIVE DASHBOARD) -->
+        <section id="projects" class="py-20 bg-white border-t border-slate-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-10">
+                    <div>
+                        <h2 id="projects-title" class="text-3xl font-bold text-slate-900">Featured Projects</h2>
+                        <p id="projects-sub" class="mt-2 text-slate-600 max-w-xl">
+                            Select a project to explore the objectives, stack, and <strong>simulated results</strong>.
+                        </p>
+                    </div>
+                    <div class="mt-4 md:mt-0">
+                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Interactive Portfolio</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-auto lg:h-[600px]">
+                    <!-- Project List (Sidebar) -->
+                    <div class="lg:col-span-4 flex flex-col gap-4 overflow-y-auto custom-scroll pr-2" id="project-list-container">
+                        <!-- Injected via JS -->
+                    </div>
+
+                    <!-- Project Detail (Main View) -->
+                    <div class="lg:col-span-8 bg-slate-50 rounded-2xl border border-slate-200 p-1 shadow-inner flex flex-col h-full">
+                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 flex-grow p-8 flex flex-col overflow-y-auto">
+                            
+                            <!-- Detail Header -->
+                            <div class="flex justify-between items-start mb-6 border-b border-slate-100 pb-6">
+                                <div>
+                                    <span id="detail-tag" class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-bold rounded-full uppercase mb-2 inline-block">Category</span>
+                                    <h3 id="detail-title" class="text-2xl font-bold text-slate-900">Project Title</h3>
+                                </div>
+                                <div class="flex gap-2" id="detail-links">
+                                    <!-- GitHub Link injected here -->
+                                </div>
+                            </div>
+
+                            <!-- Detail Content Grid -->
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
+                                <div>
+                                    <h4 id="lbl-objective" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Objective</h4>
+                                    <p id="detail-obj" class="text-sm text-slate-700 leading-relaxed mb-6">Description...</p>
+                                    
+                                    <h4 id="lbl-stack" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Tech Stack</h4>
+                                    <div id="detail-stack" class="flex flex-wrap gap-2"></div>
+                                </div>
+                                
+                                <!-- Dynamic Chart Area -->
+                                <div class="bg-white rounded-lg border border-slate-100 p-4 shadow-sm flex flex-col">
+                                    <div class="flex justify-between items-center mb-4">
+                                        <h4 id="lbl-results" class="text-xs font-bold text-teal-600 uppercase tracking-wider">Key Results (Simulated)</h4>
+                                    </div>
+                                    <div class="chart-wrapper flex-grow relative" style="height: 200px;">
+                                        <canvas id="projectChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Key Actions Footer -->
+                            <div class="mt-auto bg-slate-50 rounded-lg p-5 border border-slate-100">
+                                <h4 id="lbl-actions" class="text-sm font-bold text-slate-800 mb-3">Key Actions & Impact</h4>
+                                <ul id="detail-actions" class="text-sm text-slate-600 space-y-2 list-disc pl-5">
+                                    <!-- List injected -->
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXPERIENCE TIMELINE -->
+        <section id="experience" class="py-20 bg-slate-50">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 id="exp-title" class="text-3xl font-bold text-slate-900 mb-12 text-center">Professional Journey</h2>
+                
+                <div class="space-y-12 border-l-2 border-slate-200 ml-4 pl-8 relative" id="exp-list">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h2 id="footer-title" class="text-2xl font-bold text-white mb-6">Ready to collaborate?</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:dmedcos@yahoo.fr" class="hover:text-teal-400 transition flex items-center gap-2">
+                    <i class="ph ph-envelope-simple text-xl"></i> dmedcos@yahoo.fr
+                </a>
+                <a href="tel:+2250708276664" class="hover:text-teal-400 transition flex items-center gap-2">
+                    <i class="ph ph-phone text-xl"></i> +225 07 08 276 664
+                </a>
+                <a href="https://linkedin.com/in/medico-diomande-data" class="hover:text-teal-400 transition flex items-center gap-2">
+                    <i class="ph ph-linkedin-logo text-xl"></i> LinkedIn
+                </a>
+            </div>
+            <p class="text-sm text-slate-500">
+                &copy; 2025 Médico DIOMANDE. <span id="footer-rights">All rights reserved.</span>
+            </p>
         </div>
-    </section>
-
-    <section id="projets">
-        <h2 style="padding-left: 40px;">Mes Projets</h2>
-
-        <div class="projet">
-            <h3>Analysez des données de systèmes éducatifs</h3>
-            <p><strong>Description</strong> : Dans le cadre de l'expansion internationale de une EdTech qui propose des contenus de formation en ligne,
-                une analyse exploratoire des données sur l'éducation de la Banque mondiale est nécessaire. Cette analyse vise à 
-                identifier les pays à fort potentiel de clients, évaluer l'évolution de ce potentiel et prioriser les pays d'opération.</p>
-            <p><strong>Objectif</strong>: Déterminer la qualité et la pertinence des données pour éclairer les décisions stratégiques d'expansion.</p>
-            <p><strong>Skills</strong> :  Python, Analyse exploratoire, Data Viz.</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%201" target="_blank">GitHub - Projet 1</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Conception d' une application au service de la santé publique</h3>
-            <p><strong>Description</strong> : Dans le cadre de l'orientation des personnes souffrant de maladies chronique, notamment le 
-                Diabète dans leur alimentation. Une Analyse de la valeur nutritionelle des biens de consommation afin de trouver des produits plus sains et plus responsables.</p>
-            <p><strong>Objectif</strong> : Prévenir les personnes diabétiques sur les risques de la consommation de certains produits.</p>
-            <p><strong>Skills</strong> : Analyse exploratoire, Apprentissage supervisé (Régression), Réduction de dimension (ACP).</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%202" target="_blank">GitHub - Projet 2</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Anticipez les besoins en consommation de bâtiments</h3>
-            <p><strong>Description</strong> : Dans le cadre de l'initiative de Seattle pour atteindre la neutralité carbone d'ici 2050,
-                le projet vise à prédire les émissions de CO2 et la consommation d'énergie des bâtiments non résidentiels à partir 
-                de données de 2016. Une analyse exploratoire courte sera réalisée, suivie de tests de divers modèles de prédiction,
-                en intégrant l'"ENERGY STAR Score" pour évaluer son utilité dans la modélisation. </p>
-            <p><strong>Objectif</strong> : Prédire les émissions de GES et la consommation d'électricité de bâtiments.</p>
-            <p><strong>Skills</strong> : Analyse exploratoire, Apprentissage supervisé (Régression), Cross-Validation (CV), Interpretation 
-                de modèle (SHAP).</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%203" target="_blank">GitHub - Projet 3</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Segmentation des clients d'un site de e-commerce</h3>
-            <p><strong>Description</strong> : À partir d'une base de données anonymisée, Il faut identifier des groupes similaires; facilitant ainsi les campagnes marketing.
-                 Un contrat de maintenance sera proposé, basé sur l'analyse de la stabilité des segments dans le temps. Des documents de modélisation, 
-                 de simulation et une présentation pour retour d'équipe seront élaborés pour soutenir cette initiative. </p>
-            <p><strong>Objectif</strong> : Segmenter les clients d'une entreprise en fonction de leur comportement d'achat et de leurs données personnelles.</p>
-            <p><strong>Skills</strong> : Analyse exploratoire, Segmentation RFM, Classification non supervisé (Kmeans, DBSCAN, Agglomerative clustering), 
-                Réduction de dimension (ACP,  t-SNE) .</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%204" target="_blank">GitHub - Projet 4</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Classification automatique des biens de consommation</h3>
-            <p><strong>Description</strong> : Développement d'un moteur de classification d'articles pour une marketplace e-commerce, 
-                automatisant l'attribution de catégories basées sur les images et descriptions des produits. La phase initiale impliquera le prétraitement des données, 
-                l'extraction de features avec diverses techniques (bag-of-words, embeddings, CNN), et l'analyse visuelle pour évaluer la faisabilité de regroupement.
-                La seconde itération va introduire la classification supervisée avec data augmentation et la collecte de produits spécifiques via une API.</p>
-            <p><strong>Objectif</strong> : Réaliser une segmentation sur des données textuelles (descriptions...) et visuelles (photo de produit).</p>
-            <p><strong>Skills</strong> : Natural Language Processing, Deep learning, Computer Vision, Classification non supervisée, Réduction de dimension (ACP,  t-SNE) .</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%205" target="_blank">GitHub - Projet 5</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Mise en oeuvre d'un outil de prédiction de remboursement de crédit</h3>
-            <p><strong>Description</strong> : Développement d'un outil de scoring crédit pour prédire la probabilité de remboursement des clients dans une société financière. 
-                Le projet inclut la construction d'un modèle de classification prenant en compte des données variées, un dashboard interactif pour la transparence des 
-                décisions d'octroi de crédit, et la mise en production via une API. Une démarche MLOps sera mise en œuvre pour automatiser le cycle de vie du modèle, 
-                avec une attention particulière sur le déséquilibre des classes et l'optimisation des coûts d'erreur.</p>
-            <p><strong>Objectif</strong> : Prédire la capacité d'un client à rembourser son prêt, déployer le modèle sous forme d'API et générer un dashboard dans le cloud.</p>
-            <p><strong>Skills</strong> : MLOPS : MLFLOW Tracking, GitHub, Déploiement de modèle (Heroku), Dashboard (DASH), Création API (Flash).</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%206" target="_blank">GitHub - Projet 6</a></p>
-        </div>
-
-        <div class="projet">
-            <h3>Déploiement d'un modèle dans le cloud</h3>
-            <p><strong>Description</strong> : La mission consiste à compléter une chaîne de traitement de données en utilisant PySpark sur AWS EMR pour préparer l'échelle des données.
-                Les tâches incluent la mise en place d'une instance EMR, le traitement de diffusion des poids d'un modèle TensorFlow, et une réduction de dimension PCA.
-                Le projet vise à établir une architecture Big Data rentable pour l'avenir. </p>
-            <p><strong>Objectif</strong> : Utiliser un environnement cloud AWS pour extraire les caractéristiques d'images dans un contexte de Big Data .</p>
-            <p><strong>Skills</strong> : Cloud Computing, SPARK, Transfert Learning .</p>
-            <p><a href="https://github.com/Medcos/Data-Science/tree/main/Projet%207" target="_blank">GitHub - Projet 7</a></p>
-        </div>
-    </section>
-
-
-    <footer id="contact">
-        <h2>Contactez-moi</h2>
-        <p>Téléphone : +225 07 08 27 66 64</p>
-        <p>Email : dmedcos@yahoo.fr</p>
-        <p><a href="https://www.linkedin.com/in/m%C3%A9dico-diomande-220a70b9" target="_blank" style="color: white;">LinkedIn</a></p>
-        <p><a href="https://github.com/Medcos/Data-Science" target="_blank" style="color: white;">GitHub</a></p>
     </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- DATA STORE (BILINGUAL) ---
+        const content = {
+            en: {
+                nav: { role: "Data Scientist | Engineer", about: "About", projects: "Projects", skills: "Skills", exp: "Experience", contact: "Contact Me" },
+                hero: {
+                    badge: "🚀 Remote Ready & Part-time Available",
+                    title_start: "Transforming Data into",
+                    title_end: "Strategic Engineering.",
+                    desc: "I leverage 10+ years of rigorous engineering management to build robust, business-centric Data Science solutions. Expert in Python, MLOps, and bringing structure to chaos.",
+                    cta: "Explore Projects",
+                    chart_title: "Skill Balance"
+                },
+                skills: { title: "Technical Expertise", sub: "Bridging the gap between Engineering rigor and AI innovation." },
+                projects: { title: "Key Data Projects", sub: "Interactive showcase of my recent work in FinTech, Big Data, and Computer Vision.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Performance Metrics", lbl_act: "My Solution & Impact" },
+                exp: { title: "Career Timeline" },
+                footer: { title: "Ready to discuss your data challenges?", rights: "All rights reserved." },
+                timeline: [
+                    { role: "Head of Engineering Department", company: "AIEC (Abidjan)", date: "Apr 2024 – Present", desc: "Managing technical teams and large-scale electrification projects. Using data analytics to optimize budget allocation and resource planning." },
+                    { role: "Data Scientist (Master's Level)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Intensive project-based training. Delivered 7+ end-to-end data solutions including credit scoring, image classification, and big data processing." },
+                    { role: "Project Engineer", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordinated cross-functional teams. Analyzed operational data to improve project efficiency and safety standards." }
+                ],
+                projects_data: [
+                    {
+                        id: 'credit', title: 'Credit Scoring Tool', tag: 'FinTech / MLOps',
+                        obj: 'Develop a predictive model to assess client bankruptcy risk and deploy a dashboard for non-technical banking staff.',
+                        actions: ['Handled severe class imbalance using SMOTE.', 'Trained a LightGBM model focusing on interpretability (SHAP).', 'Built a Streamlit API for real-time scoring.', 'Automated deployment via GitHub Actions.'],
+                        chartLabel: 'Feature Importance (SHAP)',
+                        chartData: [0.85, 0.76, 0.65, 0.45, 0.30],
+                        chartLabels: ['Income', 'Debt Ratio', 'Age', 'Loan Amt', 'History']
+                    },
+                    {
+                        id: 'product', title: 'Auto Product Classification', tag: 'E-Commerce / NLP',
+                        obj: 'Automate the categorization of marketplace items using both images and text descriptions to increase efficiency.',
+                        actions: ['Implemented Transfer Learning with VGG16 (CNN) for images.', 'Used BERT & TF-IDF for text description analysis.', 'Combined models to achieve 92% accuracy.'],
+                        chartLabel: 'Accuracy by Category',
+                        chartData: [95, 88, 92, 85, 90],
+                        chartLabels: ['Watches', 'Home', 'Tech', 'Books', 'Beauty']
+                    },
+                    {
+                        id: 'sentiment', title: 'Big Data Sentiment Analysis', tag: 'Big Data / Spark',
+                        obj: 'Process massive social media datasets to detect brand sentiment trends in real-time.',
+                        actions: ['Provisioned AWS EMR Spark Clusters.', 'Wrote PySpark scripts for distributed data cleaning.', 'Deployed a Logistic Regression model for binary classification.'],
+                        chartLabel: 'Sentiment Volume (Millions)',
+                        chartData: [1.2, 1.5, 3.0, 2.2, 4.1],
+                        chartLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+                    }
+                ]
+            },
+            fr: {
+                nav: { role: "Data Scientist | Ingénieur", about: "À propos", projects: "Projets", skills: "Compétences", exp: "Parcours", contact: "Me Contacter" },
+                hero: {
+                    badge: "🎓 Diplômé RNCP Niveau 7 (Bac+5)",
+                    title_start: "L'Alliance de l'Ingénierie",
+                    title_end: "et de la Data Science.",
+                    desc: "Ingénieur expérimenté (10+ ans) reconverti en Data Science. Je combine rigueur méthodologique et expertise technique (Python, IA, Big Data) pour résoudre des problèmes complexes.",
+                    cta: "Voir mes Réalisations",
+                    chart_title: "Matrice de Compétences"
+                },
+                skills: { title: "Expertise Technique", sub: "Un profil complet : de la gestion de projet à l'algorithmique avancée." },
+                projects: { title: "Projets Réalisés", sub: "Découvrez mes travaux pratiques : Modélisation, MLOps et Analyse de données.", lbl_obj: "L'Objectif", lbl_stack: "Technologies", lbl_res: "Résultats Simulés", lbl_act: "Actions & Méthodologie" },
+                exp: { title: "Parcours Professionnel" },
+                footer: { title: "Prêt à collaborer ?", rights: "Tous droits réservés." },
+                timeline: [
+                    { role: "Chef de Service Ingénierie", company: "AIEC (Abidjan)", date: "Avril 2024 – Présent", desc: "Supervision de projets d'électrification et management d'équipes. Analyse de données techniques pour l'optimisation des coûts et délais." },
+                    { role: "Data Scientist (Diplôme Bac+5)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Formation intensive par la pratique. Réalisation de 7 projets complets : Scoring bancaire, Classification d'images, Big Data avec Spark." },
+                    { role: "Ingénieur Projet", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordination technique et suivi budgétaire. Analyse rigoureuse des indicateurs de performance des chantiers." }
+                ],
+                projects_data: [
+                    {
+                        id: 'credit', title: 'Scoring Bancaire & MLOps', tag: 'Finance / MLOps',
+                        obj: 'Développer un outil de scoring crédit pour prédire le risque de défaut client et aider à la décision.',
+                        actions: ['Gestion du déséquilibre de classes (SMOTE).', 'Modèle LightGBM optimisé et interprétable (SHAP).', 'Dashboard Streamlit interactif pour les conseillers.', 'Pipeline CI/CD avec GitHub Actions.'],
+                        chartLabel: 'Importance des Variables (SHAP)',
+                        chartData: [0.85, 0.76, 0.65, 0.45, 0.30],
+                        chartLabels: ['Revenus', 'Dettes', 'Age', 'Montant', 'Historique']
+                    },
+                    {
+                        id: 'product', title: 'Classification Automatique', tag: 'E-Commerce / Deep Learning',
+                        obj: 'Automatiser la catégorisation de produits sur une marketplace via analyse d\'images et de textes.',
+                        actions: ['Transfer Learning avec VGG16 (CNN) sur les images.', 'NLP avancé (BERT, TF-IDF) sur les descriptions.', 'Pipeline hybride atteignant 92% de précision.'],
+                        chartLabel: 'Précision par Catégorie',
+                        chartData: [95, 88, 92, 85, 90],
+                        chartLabels: ['Montres', 'Maison', 'Tech', 'Livres', 'Beauté']
+                    },
+                    {
+                        id: 'sentiment', title: 'Analyse Big Data Spark', tag: 'Big Data / Cloud',
+                        obj: 'Analyser des volumes massifs de tweets pour détecter les tendances de sentiment (Bad Buzz).',
+                        actions: ['Déploiement de clusters Spark sur AWS EMR.', 'Scripts PySpark optimisés pour le nettoyage.', 'Régression Logistique pour la classification binaire.'],
+                        chartLabel: 'Volume de Tweets Traités (M)',
+                        chartData: [1.2, 1.5, 3.0, 2.2, 4.1],
+                        chartLabels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai']
+                    }
+                ]
+            }
+        };
+
+        // --- STATE ---
+        let currentLang = 'en';
+        let charts = {}; // Store chart instances
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            renderLanguage();
+            renderHeroChart();
+            renderProjects();
+            renderTimeline();
+            loadProject(0); // Load first project
+        });
+
+        // --- FUNCTIONS ---
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Toggle Buttons
+            const btnEn = document.getElementById('btn-en');
+            const btnFr = document.getElementById('btn-fr');
+            if(lang === 'en') {
+                btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+                btnFr.className = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
+            } else {
+                btnFr.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+                btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
+            }
+
+            // Re-render everything
+            renderLanguage();
+            renderHeroChart(); // Re-render to update labels if needed
+            renderProjects();
+            renderTimeline();
+            loadProject(0);
+        }
+
+        function renderLanguage() {
+            const t = content[currentLang];
+            
+            // Nav
+            document.getElementById('nav-role').textContent = t.nav.role;
+            document.getElementById('nav-about').textContent = t.nav.about;
+            document.getElementById('nav-projects').textContent = t.nav.projects;
+            document.getElementById('nav-skills').textContent = t.nav.skills;
+            document.getElementById('nav-exp').textContent = t.nav.exp;
+            document.getElementById('nav-contact').textContent = t.nav.contact;
+
+            // Hero
+            document.getElementById('hero-badge').textContent = t.hero.badge;
+            document.getElementById('hero-title').innerHTML = `${t.hero.title_start} <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">${t.hero.title_end}</span>`;
+            document.getElementById('hero-desc').textContent = t.hero.desc;
+            document.getElementById('hero-cta').innerHTML = `${t.hero.cta} <i class="ph ph-arrow-right"></i>`;
+            document.getElementById('chart-title').textContent = t.hero.chart_title;
+
+            // Section Titles
+            document.getElementById('skills-title').textContent = t.skills.title;
+            document.getElementById('skills-sub').textContent = t.skills.sub;
+            document.getElementById('projects-title').textContent = t.projects.title;
+            document.getElementById('projects-sub').textContent = t.projects.sub;
+            document.getElementById('exp-title').textContent = t.exp.title;
+            
+            // Labels in Detail View
+            document.getElementById('lbl-objective').textContent = t.projects.lbl_obj;
+            document.getElementById('lbl-stack').textContent = t.projects.lbl_stack;
+            document.getElementById('lbl-results').textContent = t.projects.lbl_res;
+            document.getElementById('lbl-actions').textContent = t.projects.lbl_act;
+
+            // Footer
+            document.getElementById('footer-title').textContent = t.footer.title;
+            document.getElementById('footer-rights').textContent = t.footer.rights;
+        }
+
+        function renderProjects() {
+            const list = document.getElementById('project-list-container');
+            list.innerHTML = '';
+            const data = content[currentLang].projects_data;
+            
+            data.forEach((p, index) => {
+                const card = document.createElement('div');
+                card.className = `project-card p-4 rounded-lg bg-white border border-slate-100 cursor-pointer hover:shadow-md transition group`;
+                card.onclick = () => loadProject(index);
+                card.id = `card-${index}`;
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <h4 class="font-bold text-slate-800 group-hover:text-teal-700 transition">${p.title}</h4>
+                        <i class="ph ph-caret-right text-slate-300"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">${p.tag}</p>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function loadProject(index) {
+            const data = content[currentLang].projects_data[index];
+            
+            // Active State
+            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('active'));
+            document.getElementById(`card-${index}`).classList.add('active');
+
+            // Populate Details
+            document.getElementById('detail-tag').textContent = data.tag;
+            document.getElementById('detail-title').textContent = data.title;
+            document.getElementById('detail-obj').textContent = data.obj;
+            
+            const actionsList = document.getElementById('detail-actions');
+            actionsList.innerHTML = '';
+            data.actions.forEach(a => {
+                const li = document.createElement('li');
+                li.textContent = a;
+                actionsList.appendChild(li);
+            });
+
+            // Stack Badges
+            const stackContainer = document.getElementById('detail-stack');
+            stackContainer.innerHTML = '';
+            // Infer stack from tag/actions context for demo
+            const stackMap = { 'credit': ['Python', 'LightGBM', 'Flask', 'GitHub Actions'], 'product': ['TensorFlow', 'Keras', 'BERT', 'Python'], 'sentiment': ['Spark', 'AWS EMR', 'Python', 'SQL'] };
+            const stack = stackMap[data.id] || ['Python', 'Data Science'];
+            stack.forEach(s => {
+                const span = document.createElement('span');
+                span.className = "px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded border border-slate-200";
+                span.textContent = s;
+                stackContainer.appendChild(span);
+            });
+
+            // Update Chart
+            renderProjectChart(data);
+        }
+
+        function renderTimeline() {
+            const container = document.getElementById('exp-list');
+            container.innerHTML = '';
+            const data = content[currentLang].timeline;
+
+            data.forEach(item => {
+                const div = document.createElement('div');
+                div.className = "relative pl-8 pb-8 fade-in";
+                div.innerHTML = `
+                    <span class="absolute -left-[9px] top-0 h-5 w-5 rounded-full bg-white border-4 border-teal-600"></span>
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                        <h3 class="text-lg font-bold text-slate-900">${item.role}</h3>
+                        <span class="text-sm font-semibold text-teal-700 bg-teal-50 px-2 py-1 rounded border border-teal-100">${item.date}</span>
+                    </div>
+                    <p class="text-sm text-slate-500 font-medium mb-2">${item.company}</p>
+                    <p class="text-slate-600 leading-relaxed">${item.desc}</p>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // --- CHARTS ---
+
+        function renderHeroChart() {
+            const ctx = document.getElementById('heroChart').getContext('2d');
+            if(charts.hero) charts.hero.destroy();
+
+            charts.hero = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Engineering', 'Python/Dev', 'Machine Learning', 'Leadership', 'Big Data', 'MLOps'],
+                    datasets: [{
+                        label: 'Skill Level',
+                        data: [95, 85, 80, 90, 70, 75],
+                        fill: true,
+                        backgroundColor: 'rgba(20, 184, 166, 0.2)', // Teal-500
+                        borderColor: '#0d9488', // Teal-600
+                        pointBackgroundColor: '#0d9488',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: '#0d9488'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#e2e8f0' },
+                            grid: { color: '#e2e8f0' },
+                            pointLabels: {
+                                font: { size: 12, family: 'Inter', weight: '600' },
+                                color: '#64748b'
+                            },
+                            ticks: { display: false, max: 100 }
+                        }
+                    },
+                    plugins: { legend: { display: false } }
+                }
+            });
+        }
+
+        function renderProjectChart(data) {
+            const ctx = document.getElementById('projectChart').getContext('2d');
+            if(charts.project) charts.project.destroy();
+
+            // Use Bar for all for simplicity and clarity in "Results"
+            charts.project = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: data.chartLabels,
+                    datasets: [{
+                        label: data.chartLabel,
+                        data: data.chartData,
+                        backgroundColor: '#0F766E',
+                        borderRadius: 4,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { backgroundColor: '#1e293b', padding: 10 }
+                    },
+                    scales: {
+                        y: { beginAtZero: true, grid: { borderDash: [2, 4] } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+
+    </script>
 </body>
 </html>
