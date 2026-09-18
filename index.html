@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Médico DIOMANDE | Data Scientist & Engineer</title>
-    
+    <meta name="description" content="Médico DIOMANDE — Energy Data Scientist & Infrastructure Intelligence Specialist. 10+ years of electrification field engineering, now applied to predictive maintenance, rollout forecasting and agentic AI automation.">
+    <title>Médico DIOMANDE | Energy Data Scientist & Infrastructure Intelligence</title>
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Chart.js for Data Viz -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
@@ -19,7 +20,7 @@
 
     <style>
         body { font-family: 'Inter', sans-serif; }
-        
+
         /* Smooth Transitions */
         .fade-in { animation: fadeIn 0.5s ease-in-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
@@ -37,12 +38,22 @@
             border-left: 4px solid #0F766E; /* Teal-700 */
             background-color: #F0FDFA; /* Teal-50 */
         }
-        
+
         /* Custom Scrollbar for Project List */
         .custom-scroll::-webkit-scrollbar { width: 6px; }
         .custom-scroll::-webkit-scrollbar-track { background: #f1f1f1; }
         .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
         .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        /* Stat tile figures */
+        .stat-value { font-variant-numeric: proportional-nums; }
+
+        /* Mobile nav panel */
+        #mobile-menu { display: none; }
+        #mobile-menu.open { display: block; }
+
+        /* Testimonial placeholder dashed border */
+        .testimonial-placeholder { border: 1.5px dashed #cbd5e1; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
@@ -59,28 +70,49 @@
                         </div>
                         <div>
                             <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900">Médico DIOMANDE</h1>
-                            <p class="text-xs text-teal-600 font-semibold uppercase tracking-wider" id="nav-role">Data Scientist | Engineer</p>
+                            <p class="text-xs text-teal-600 font-semibold uppercase tracking-wider" id="nav-role">Energy Data Scientist</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-8">
+                <div class="hidden md:flex items-center space-x-7">
                     <a href="#about" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-about">About</a>
+                    <a href="#services" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-services">Services</a>
                     <a href="#projects" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-projects">Projects</a>
-                    <a href="#skills" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-skills">Skills</a>
                     <a href="#experience" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-exp">Experience</a>
-                    
+                    <a href="#contact" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-contact-link">Contact</a>
+
                     <!-- Language Switcher -->
                     <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
                         <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
                         <button onclick="setLanguage('fr')" id="btn-fr" class="px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
                     </div>
 
-                    <a href="mailto:dmedcos@yahoo.fr" class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" id="nav-contact">
+                    <a href="#contact" class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" id="nav-contact">
                         Contact Me
                     </a>
                 </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex md:hidden items-center gap-2">
+                    <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
+                        <button onclick="setLanguage('en')" id="btn-en-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
+                        <button onclick="setLanguage('fr')" id="btn-fr-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
+                    </div>
+                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menu">
+                        <i class="ph ph-list text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Panel -->
+            <div id="mobile-menu" class="md:hidden border-t border-slate-100 py-3 space-y-1">
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-about-m">About</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-services-m">Services</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-projects-m">Projects</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-exp-m">Experience</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-contact-m">Contact</a>
             </div>
         </div>
     </nav>
@@ -91,23 +123,23 @@
             <div class="fade-in">
                 <!-- Badge -->
                 <span id="hero-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 mb-6">
-                    🚀 Open to Remote Opportunities
+                    🚀 Available for remote consulting missions
                 </span>
-                
+
                 <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
-                    Bridging Engineering <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">Rigor with Data Science.</span>
+                    Energy Data Science & <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">Infrastructure Intelligence.</span>
                 </h1>
-                
+
                 <p id="hero-desc" class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
-                    I combine 10+ years of technical project management with advanced expertise in Machine Learning, NLP, and MLOps to turn complex data into strategic business decisions.
+                    10+ years running World Bank, AFD and AfDB-funded electrification worksites, now applying machine learning and agentic AI automation to the same physical infrastructure problems — predictive maintenance, rollout forecasting, and field-operations intelligence.
                 </p>
 
                 <div class="flex flex-wrap gap-4">
                     <a href="#projects" id="hero-cta" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition shadow-lg flex items-center gap-2">
                         View Projects <i class="ph ph-arrow-right"></i>
                     </a>
-                    <a href="https://github.com/medcos/Data-Science" target="_blank" class="bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
+                    <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
                         <i class="ph ph-github-logo text-xl"></i> GitHub
                     </a>
                 </div>
@@ -116,7 +148,7 @@
             <!-- Hero Viz (Radar Chart) -->
             <div class="relative lg:h-[400px] flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-100 p-6 fade-in">
                 <div class="absolute top-4 left-4">
-                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" id="chart-title">Profile Matrix</h3>
+                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" id="chart-title">Skill Matrix</h3>
                 </div>
                 <div class="chart-wrapper">
                     <canvas id="heroChart"></canvas>
@@ -128,59 +160,57 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
 
-        <!-- SKILLS / TECH STACK SECTION -->
-        <section id="skills" class="py-16 bg-slate-50">
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-20 bg-slate-50 border-b border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 id="skills-title" class="text-3xl font-bold text-slate-900">Technical Expertise</h2>
-                    <p id="skills-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto">A full-stack data profile, from raw data engineering to model deployment.</p>
+                <div class="text-center mb-14">
+                    <h2 id="services-title" class="text-3xl font-bold text-slate-900">Services</h2>
+                    <p id="services-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto">Three ways to work together, from a short diagnostic to ongoing automation support.</p>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                    <!-- Skill Cards generated by JS -->
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
-                        <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                            <i class="ph ph-code text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900">Python & SQL</h3>
-                        <p class="text-xs text-slate-500 mt-1">Pandas, NumPy, Adv. Queries</p>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="services-grid">
+                    <!-- Injected via JS -->
+                </div>
 
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
-                        <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                            <i class="ph ph-brain text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900">Machine Learning</h3>
-                        <p class="text-xs text-slate-500 mt-1">Scikit-learn, XGBoost, SHAP</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
-                        <div class="w-12 h-12 bg-orange-50 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                            <i class="ph ph-cloud-arrow-up text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900">MLOps & Cloud</h3>
-                        <p class="text-xs text-slate-500 mt-1">AWS, MLflow, Docker, Git</p>
-                    </div>
-
-                    <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group">
-                        <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                            <i class="ph ph-chart-bar text-2xl"></i>
-                        </div>
-                        <h3 class="font-bold text-slate-900">Data Viz</h3>
-                        <p class="text-xs text-slate-500 mt-1">Power BI, Streamlit, Matplotlib</p>
+                <div class="mt-12 text-center">
+                    <p id="services-stack-label" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Core Stack</p>
+                    <div class="flex flex-wrap justify-center gap-2">
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">Python</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">Scikit-learn</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">SHAP</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">LangGraph</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">n8n</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">FastAPI</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">Streamlit</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">SQL</span>
+                        <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">AppSheet</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- SKILLS / TECH STACK SECTION -->
+        <section id="skills" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 id="skills-title" class="text-3xl font-bold text-slate-900">Technical Expertise</h2>
+                    <p id="skills-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto">A full-stack profile, from field data engineering to agentic automation.</p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6" id="skills-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
         <!-- PROJECTS SECTION (INTERACTIVE DASHBOARD) -->
-        <section id="projects" class="py-20 bg-white border-t border-slate-200">
+        <section id="projects" class="py-20 bg-slate-50 border-t border-slate-200">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-10">
                     <div>
-                        <h2 id="projects-title" class="text-3xl font-bold text-slate-900">Featured Projects</h2>
+                        <h2 id="projects-title" class="text-3xl font-bold text-slate-900">Flagship Projects</h2>
                         <p id="projects-sub" class="mt-2 text-slate-600 max-w-xl">
-                            Select a project to explore the objectives, stack, and <strong>simulated results</strong>.
+                            Real, publicly deployed systems inspired by donor-financed electrification programs in West Africa — data anonymized throughout.
                         </p>
                     </div>
                     <div class="mt-4 md:mt-0">
@@ -188,56 +218,52 @@
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-auto lg:h-[600px]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-auto lg:h-[680px]">
                     <!-- Project List (Sidebar) -->
                     <div class="lg:col-span-4 flex flex-col gap-4 overflow-y-auto custom-scroll pr-2" id="project-list-container">
                         <!-- Injected via JS -->
                     </div>
 
                     <!-- Project Detail (Main View) -->
-                    <div class="lg:col-span-8 bg-slate-50 rounded-2xl border border-slate-200 p-1 shadow-inner flex flex-col h-full">
-                        <div class="bg-white rounded-xl shadow-sm border border-slate-200 flex-grow p-8 flex flex-col overflow-y-auto">
-                            
-                            <!-- Detail Header -->
-                            <div class="flex justify-between items-start mb-6 border-b border-slate-100 pb-6">
-                                <div>
-                                    <span id="detail-tag" class="px-3 py-1 bg-teal-100 text-teal-800 text-xs font-bold rounded-full uppercase mb-2 inline-block">Category</span>
-                                    <h3 id="detail-title" class="text-2xl font-bold text-slate-900">Project Title</h3>
-                                </div>
-                                <div class="flex gap-2" id="detail-links">
-                                    <!-- GitHub Link injected here -->
-                                </div>
+                    <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full overflow-y-auto">
+
+                        <!-- Visual Banner -->
+                        <div id="detail-banner" class="rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br from-teal-600 to-teal-800">
+                            <div class="relative z-10">
+                                <span id="detail-tag" class="px-3 py-1 bg-white/15 text-white text-xs font-bold rounded-full uppercase mb-2 inline-block backdrop-blur-sm">Category</span>
+                                <h3 id="detail-title" class="text-2xl font-bold text-white">Project Title</h3>
                             </div>
+                            <i id="detail-icon" class="ph ph-gauge text-white/20 text-[7rem] absolute -right-2 -bottom-4"></i>
+                        </div>
+
+                        <div class="p-8 flex flex-col flex-grow">
+                            <!-- Links -->
+                            <div class="flex gap-3 mb-6" id="detail-links"></div>
 
                             <!-- Detail Content Grid -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                                 <div>
-                                    <h4 id="lbl-objective" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Objective</h4>
+                                    <h4 id="lbl-objective" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">The Challenge</h4>
                                     <p id="detail-obj" class="text-sm text-slate-700 leading-relaxed mb-6">Description...</p>
-                                    
+
                                     <h4 id="lbl-stack" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Tech Stack</h4>
                                     <div id="detail-stack" class="flex flex-wrap gap-2"></div>
                                 </div>
-                                
-                                <!-- Dynamic Chart Area -->
-                                <div class="bg-white rounded-lg border border-slate-100 p-4 shadow-sm flex flex-col">
-                                    <div class="flex justify-between items-center mb-4">
-                                        <h4 id="lbl-results" class="text-xs font-bold text-teal-600 uppercase tracking-wider">Key Results (Simulated)</h4>
-                                    </div>
-                                    <div class="chart-wrapper flex-grow relative" style="height: 200px;">
-                                        <canvas id="projectChart"></canvas>
-                                    </div>
+
+                                <!-- Stat Tiles -->
+                                <div class="bg-slate-50 rounded-lg border border-slate-100 p-5 flex flex-col">
+                                    <h4 id="lbl-results" class="text-xs font-bold text-teal-600 uppercase tracking-wider mb-4">Key Results</h4>
+                                    <div id="detail-stats" class="grid grid-cols-1 gap-4 flex-grow content-center"></div>
                                 </div>
                             </div>
 
                             <!-- Key Actions Footer -->
                             <div class="mt-auto bg-slate-50 rounded-lg p-5 border border-slate-100">
-                                <h4 id="lbl-actions" class="text-sm font-bold text-slate-800 mb-3">Key Actions & Impact</h4>
+                                <h4 id="lbl-actions" class="text-sm font-bold text-slate-800 mb-3">Approach & Impact</h4>
                                 <ul id="detail-actions" class="text-sm text-slate-600 space-y-2 list-disc pl-5">
                                     <!-- List injected -->
                                 </ul>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -245,12 +271,83 @@
         </section>
 
         <!-- EXPERIENCE TIMELINE -->
-        <section id="experience" class="py-20 bg-slate-50">
+        <section id="experience" class="py-20 bg-white">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 id="exp-title" class="text-3xl font-bold text-slate-900 mb-12 text-center">Professional Journey</h2>
-                
+
                 <div class="space-y-12 border-l-2 border-slate-200 ml-4 pl-8 relative" id="exp-list">
                     <!-- Injected via JS -->
+                </div>
+
+                <div class="mt-14 border-t border-slate-100 pt-10">
+                    <p id="certs-label" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 text-center">Certifications</p>
+                    <div class="flex flex-wrap justify-center gap-3" id="certs-grid">
+                        <!-- Injected via JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS SECTION -->
+        <section id="testimonials" class="py-20 bg-slate-50 border-t border-slate-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 id="testimonials-title" class="text-3xl font-bold text-slate-900">Client Testimonials</h2>
+                <p id="testimonials-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto mb-12">Testimonials will appear here as new missions are completed.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="testimonials-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 bg-white border-t border-slate-200">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 id="contact-title" class="text-3xl font-bold text-slate-900">Let's Work Together</h2>
+                    <p id="contact-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto">Tell me about your project, or book a call directly.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                    <!-- Contact Form -->
+                    <form id="contact-form" class="lg:col-span-3 bg-slate-50 rounded-2xl border border-slate-200 p-8 space-y-5">
+                        <div>
+                            <label id="lbl-name" for="cf-name" class="block text-sm font-semibold text-slate-700 mb-1.5">Name</label>
+                            <input id="cf-name" name="name" type="text" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+                        </div>
+                        <div>
+                            <label id="lbl-email" for="cf-email" class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
+                            <input id="cf-email" name="email" type="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+                        </div>
+                        <div>
+                            <label id="lbl-message" for="cf-message" class="block text-sm font-semibold text-slate-700 mb-1.5">Message</label>
+                            <textarea id="cf-message" name="message" rows="5" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm"></textarea>
+                        </div>
+                        <button type="submit" id="cf-submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md flex items-center justify-center gap-2">
+                            <i class="ph ph-paper-plane-tilt"></i> <span>Send Message</span>
+                        </button>
+                        <p id="cf-status" class="text-sm text-center pt-1"></p>
+                    </form>
+
+                    <!-- Calendly / Direct Contact -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <div class="bg-slate-900 rounded-2xl p-8 text-white flex-grow flex flex-col justify-center">
+                            <i class="ph ph-calendar-check text-4xl text-teal-400 mb-4"></i>
+                            <h3 id="calendly-title" class="text-lg font-bold mb-2">Prefer to talk directly?</h3>
+                            <p id="calendly-desc" class="text-sm text-slate-300 mb-6 leading-relaxed">Book a 30-minute call to discuss your project.</p>
+                            <button onclick="handleBookCall()" id="calendly-btn" class="bg-teal-600 hover:bg-teal-500 text-white px-5 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm">
+                                <i class="ph ph-video-camera"></i> <span>Book a Call</span>
+                            </button>
+                        </div>
+                        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-3">
+                            <a href="mailto:dmedcos@yahoo.fr" class="flex items-center gap-3 text-sm text-slate-600 hover:text-teal-700 transition">
+                                <i class="ph ph-envelope-simple text-lg"></i> dmedcos@yahoo.fr
+                            </a>
+                            <a href="https://linkedin.com/in/medico-diomande-data" target="_blank" rel="noopener" class="flex items-center gap-3 text-sm text-slate-600 hover:text-teal-700 transition">
+                                <i class="ph ph-linkedin-logo text-lg"></i> linkedin.com/in/medico-diomande-data
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -261,7 +358,7 @@
     <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h2 id="footer-title" class="text-2xl font-bold text-white mb-6">Ready to collaborate?</h2>
-            <div class="flex justify-center gap-6 mb-8">
+            <div class="flex flex-wrap justify-center gap-6 mb-8">
                 <a href="mailto:dmedcos@yahoo.fr" class="hover:text-teal-400 transition flex items-center gap-2">
                     <i class="ph ph-envelope-simple text-xl"></i> dmedcos@yahoo.fr
                 </a>
@@ -271,106 +368,192 @@
                 <a href="https://linkedin.com/in/medico-diomande-data" class="hover:text-teal-400 transition flex items-center gap-2">
                     <i class="ph ph-linkedin-logo text-xl"></i> LinkedIn
                 </a>
+                <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="hover:text-teal-400 transition flex items-center gap-2">
+                    <i class="ph ph-github-logo text-xl"></i> GitHub
+                </a>
             </div>
             <p class="text-sm text-slate-500">
-                &copy; 2025 Médico DIOMANDE. <span id="footer-rights">All rights reserved.</span>
+                &copy; 2026 Médico DIOMANDE. <span id="footer-rights">All rights reserved.</span>
             </p>
         </div>
     </footer>
 
     <!-- JAVASCRIPT LOGIC -->
     <script>
+        // --- CONTACT CONFIG (edit these two lines once the accounts are set up) ---
+        const CONTACT_CONFIG = {
+            formspreeEndpoint: 'https://formspree.io/f/mppwwzwn',
+            calendlyUrl: 'https://calendly.com/dmedcos-j6ow/30min',
+            fallbackEmail: 'dmedcos@yahoo.fr'
+        };
+
         // --- DATA STORE (BILINGUAL) ---
         const content = {
             en: {
-                nav: { role: "Data Scientist | Engineer", about: "About", projects: "Projects", skills: "Skills", exp: "Experience", contact: "Contact Me" },
+                nav: { role: "Energy Data Scientist", about: "About", services: "Services", projects: "Projects", exp: "Experience", contact: "Contact", contactBtn: "Contact Me" },
                 hero: {
-                    badge: "🚀 Remote Ready & Part-time Available",
-                    title_start: "Transforming Data into",
-                    title_end: "Strategic Engineering.",
-                    desc: "I leverage 10+ years of rigorous engineering management to build robust, business-centric Data Science solutions. Expert in Python, MLOps, and bringing structure to chaos.",
-                    cta: "Explore Projects",
-                    chart_title: "Skill Balance"
+                    badge: "🚀 Available for remote consulting missions",
+                    title_start: "Energy Data Science &",
+                    title_end: "Infrastructure Intelligence.",
+                    desc: "10+ years running World Bank, AFD and AfDB-funded electrification worksites, now applying machine learning and agentic AI automation to the same physical infrastructure problems — predictive maintenance, rollout forecasting, and field-operations intelligence.",
+                    cta: "View Projects",
+                    chart_title: "Skill Matrix",
+                    radar_labels: ['Field Engineering', 'Python / ML', 'Agentic AI', 'Leadership', 'Interpretability', 'Automation']
                 },
-                skills: { title: "Technical Expertise", sub: "Bridging the gap between Engineering rigor and AI innovation." },
-                projects: { title: "Key Data Projects", sub: "Interactive showcase of my recent work in FinTech, Big Data, and Computer Vision.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Performance Metrics", lbl_act: "My Solution & Impact" },
-                exp: { title: "Career Timeline" },
+                services: {
+                    title: "Services", sub: "Three ways to work together, from a short diagnostic to ongoing automation support.",
+                    stack_label: "Core Stack",
+                    cards: [
+                        { icon: 'ph-magnifying-glass', title: 'Data Audit & Diagnostic', duration: '1–3 weeks', desc: 'A structured review of your operational data — spreadsheets, databases, or field-reporting systems — surfacing data-quality issues and a prioritized remediation roadmap.' },
+                        { icon: 'ph-brain', title: 'Interpretable Predictive ML', duration: '1–3 months', desc: 'Failure-prediction and root-cause models built with SHAP interpretability from day one, delivered as a working dashboard your team can actually use — not a notebook.' },
+                        { icon: 'ph-robot', title: 'Agentic Automation & Monitoring', duration: 'Ongoing', desc: 'n8n + LangGraph automation of recurring field-operations workflows — report parsing, status classification, alerting — with post-deployment monitoring.' }
+                    ]
+                },
+                skills: {
+                    title: "Technical Expertise", sub: "A full-stack profile, from field data engineering to agentic automation.",
+                    cards: [
+                        { icon: 'ph-code', color: 'blue', title: 'Python & Data Engineering', desc: 'Pandas, NumPy, SQL, Scikit-learn pipelines' },
+                        { icon: 'ph-brain', color: 'purple', title: 'Interpretable ML', desc: 'Gradient Boosting, SHAP, model diagnostics' },
+                        { icon: 'ph-flow-arrow', color: 'orange', title: 'Agentic AI & Automation', desc: 'LangGraph, n8n, FastAPI orchestration' },
+                        { icon: 'ph-layout', color: 'teal', title: 'No-Code / Low-Code', desc: 'AppSheet, Apps Script, Streamlit' }
+                    ]
+                },
+                projects: { title: "Flagship Projects", sub: "Real, publicly deployed systems inspired by donor-financed electrification programs in West Africa — data anonymized throughout.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Key Results", lbl_act: "Approach & Impact", demo: "Live Demo", code: "View Code", production: "In Production" },
+                exp: { title: "Professional Journey" },
+                certs: { label: "Certifications", items: ["RNCP Level 7 Data Scientist — CentraleSupélec / OpenClassrooms", "AI Automation Engineer with n8n — Coursera (7-course specialization)", "Building AI Agents and Agentic Workflows — IBM"] },
+                testimonials: {
+                    title: "Client Testimonials", sub: "Testimonials will appear here as new missions are completed.",
+                    placeholder_title: "Coming soon", placeholder_desc: "This space is reserved for feedback from upcoming missions."
+                },
+                contact: {
+                    title: "Let's Work Together", sub: "Tell me about your project, or book a call directly.",
+                    lbl_name: "Name", lbl_email: "Email", lbl_message: "Message", submit: "Send Message",
+                    calendly_title: "Prefer to talk directly?", calendly_desc: "Book a 30-minute call to discuss your project.", calendly_btn: "Book a Call",
+                    status_sending: "Sending…", status_ok: "Thanks — your message was sent. I'll reply within 48h.",
+                    status_fallback: "Opening your email client with your message pre-filled…", status_error: "Something went wrong — please email me directly."
+                },
                 footer: { title: "Ready to discuss your data challenges?", rights: "All rights reserved." },
                 timeline: [
                     { role: "Head of Engineering Department", company: "AIEC (Abidjan)", date: "Apr 2024 – Present", desc: "Managing technical teams and large-scale electrification projects. Using data analytics to optimize budget allocation and resource planning." },
-                    { role: "Data Scientist (Master's Level)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Intensive project-based training. Delivered 7+ end-to-end data solutions including credit scoring, image classification, and big data processing." },
+                    { role: "Data Scientist (RNCP Level 7)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Intensive project-based training. Delivered 7+ end-to-end data solutions, later redirected toward energy and infrastructure applications." },
                     { role: "Project Engineer", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordinated cross-functional teams. Analyzed operational data to improve project efficiency and safety standards." }
                 ],
                 projects_data: [
                     {
-                        id: 'credit', title: 'Credit Scoring Tool', tag: 'FinTech / MLOps',
-                        obj: 'Develop a predictive model to assess client bankruptcy risk and deploy a dashboard for non-technical banking staff.',
-                        actions: ['Handled severe class imbalance using SMOTE.', 'Trained a LightGBM model focusing on interpretability (SHAP).', 'Built a Streamlit API for real-time scoring.', 'Automated deployment via GitHub Actions.'],
-                        chartLabel: 'Feature Importance (SHAP)',
-                        chartData: [0.85, 0.76, 0.65, 0.45, 0.30],
-                        chartLabels: ['Income', 'Debt Ratio', 'Age', 'Loan Amt', 'History']
+                        id: 'maintenance', title: 'Predictive Maintenance for Industrial Machines', tag: 'Energy · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
+                        obj: 'A two-level classification system predicting whether an industrial machine will fail and, if so, which of five failure modes is the root cause — so maintenance teams act on the right fix instead of guessing.',
+                        actions: ['Gradient Boosting tuned for the business trade-off between recall and precision, not raw accuracy.', 'SHAP interpretability on every prediction — each failure mode has its own physical signature.', 'Deployed as a 3-page Streamlit dashboard the maintenance team can query directly.'],
+                        stats: [ {value:'0.98', label:'AUC-ROC, failure prediction'}, {value:'1.00', label:'F1-score, best root-cause mode'}, {value:'5', label:'failure modes classified'} ],
+                        stack: ['Python', 'Scikit-learn', 'SHAP', 'Streamlit'],
+                        demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
-                        id: 'product', title: 'Auto Product Classification', tag: 'E-Commerce / NLP',
-                        obj: 'Automate the categorization of marketplace items using both images and text descriptions to increase efficiency.',
-                        actions: ['Implemented Transfer Learning with VGG16 (CNN) for images.', 'Used BERT & TF-IDF for text description analysis.', 'Combined models to achieve 92% accuracy.'],
-                        chartLabel: 'Accuracy by Category',
-                        chartData: [95, 88, 92, 85, 90],
-                        chartLabels: ['Watches', 'Home', 'Tech', 'Books', 'Beauty']
+                        id: 'forecast', title: 'Predictive Rollout & Supply Forecast', tag: 'Infrastructure · Forecasting', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
+                        obj: 'A 3-model suite forecasting material needs, construction progress, and delay risk across a multi-site rural electrification rollout — turning weekly field reports into forward-looking planning signals.',
+                        actions: ['Baseline-first discipline: a more complex model was kept in only 1 of 4 comparable cases, when the evidence justified it.', 'Delay-risk classifier flags at-risk worksites with 93% detection.', 'Forecast error runs roughly 2–3× lower than a no-model baseline.'],
+                        stats: [ {value:'93%', label:'delay-risk detection rate'}, {value:'3', label:'ML modules — resources, progress, risk'}, {value:'55', label:'localities across 4 departments'} ],
+                        stack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
+                        demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
                     },
                     {
-                        id: 'sentiment', title: 'Big Data Sentiment Analysis', tag: 'Big Data / Spark',
-                        obj: 'Process massive social media datasets to detect brand sentiment trends in real-time.',
-                        actions: ['Provisioned AWS EMR Spark Clusters.', 'Wrote PySpark scripts for distributed data cleaning.', 'Deployed a Logistic Regression model for binary classification.'],
-                        chartLabel: 'Sentiment Volume (Millions)',
-                        chartData: [1.2, 1.5, 3.0, 2.2, 4.1],
-                        chartLabels: ['Jan', 'Feb', 'Mar', 'Apr', 'May']
+                        id: 'agent', title: 'Jobsite Relaunch Agent', tag: 'Agentic AI · Automation', icon: 'ph-robot', banner: 'from-indigo-500 to-indigo-700',
+                        obj: 'A LangGraph + n8n agent that reads weekly field reports, resolves locality names across inconsistent spellings, and automatically classifies stalled worksites — replacing a manual weekly triage.',
+                        actions: ['9-node stateful LangGraph agent with SqliteSaver checkpointing — history persists week over week.', 'n8n workflow orchestrates the agent behind a FastAPI wrapper, validated end-to-end.', 'Public Streamlit demo simulates several weeks of jobsite history on synthetic data.'],
+                        stats: [ {value:'9', label:'LangGraph nodes'}, {value:'6', label:'n8n workflow steps'}, {value:'100%', label:'synthetic demo data — no client data exposed'} ],
+                        stack: ['LangGraph', 'n8n', 'FastAPI', 'Python'],
+                        demoUrl: 'https://energy-data-scientist-kbqch4dr9lgc3aypv3kmgx.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/smart-jobsite-relaunch-agent'
+                    },
+                    {
+                        id: 'electrack', title: 'ElecTrack Pro', tag: 'Platform Engineering · SaaS', icon: 'ph-lightning', banner: 'from-slate-700 to-slate-900',
+                        obj: 'A multi-tenant SaaS platform, built on AppSheet, Google Sheets and Apps Script, for managing field interventions on electrical infrastructure works — currently in production across 55 localities and 4 departments.',
+                        actions: ['Normalized multi-project data model with role-based access (Admin, Supervisor, Mission Lead).', 'Full technical and security audit performed, with a prioritized remediation roadmap.', 'Hybrid pricing model designed for commercialization across francophone West Africa.'],
+                        stats: [ {value:'55', label:'localities in production'}, {value:'4', label:'departments covered'}, {value:'3', label:'pricing tiers'} ],
+                        stack: ['AppSheet', 'Google Sheets', 'Apps Script'],
+                        demoUrl: '', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/electrack-pro'
                     }
                 ]
             },
             fr: {
-                nav: { role: "Data Scientist | Ingénieur", about: "À propos", projects: "Projets", skills: "Compétences", exp: "Parcours", contact: "Me Contacter" },
+                nav: { role: "Data Scientist Énergie", about: "À propos", services: "Services", projects: "Projets", exp: "Parcours", contact: "Contact", contactBtn: "Me Contacter" },
                 hero: {
-                    badge: "🎓 Diplômé RNCP Niveau 7 (Bac+5)",
-                    title_start: "L'Alliance de l'Ingénierie",
-                    title_end: "et de la Data Science.",
-                    desc: "Ingénieur expérimenté (10+ ans) reconverti en Data Science. Je combine rigueur méthodologique et expertise technique (Python, IA, Big Data) pour résoudre des problèmes complexes.",
-                    cta: "Voir mes Réalisations",
-                    chart_title: "Matrice de Compétences"
+                    badge: "🚀 Disponible pour des missions de conseil à distance",
+                    title_start: "Data Science Énergie &",
+                    title_end: "Intelligence des Infrastructures.",
+                    desc: "10+ ans à piloter des chantiers d'électrification financés par la Banque Mondiale, l'AFD et la BAD, désormais mis au service du Machine Learning et de l'automatisation par IA agentique sur ces mêmes problématiques terrain : maintenance prédictive, prévision d'exécution et intelligence des opérations de chantier.",
+                    cta: "Voir mes projets",
+                    chart_title: "Matrice de Compétences",
+                    radar_labels: ['Ingénierie Terrain', 'Python / ML', 'IA Agentique', 'Leadership', 'Interprétabilité', 'Automatisation']
                 },
-                skills: { title: "Expertise Technique", sub: "Un profil complet : de la gestion de projet à l'algorithmique avancée." },
-                projects: { title: "Projets Réalisés", sub: "Découvrez mes travaux pratiques : Modélisation, MLOps et Analyse de données.", lbl_obj: "L'Objectif", lbl_stack: "Technologies", lbl_res: "Résultats Simulés", lbl_act: "Actions & Méthodologie" },
+                services: {
+                    title: "Services", sub: "Trois formats de collaboration, du diagnostic court à l'accompagnement continu.",
+                    stack_label: "Stack Principale",
+                    cards: [
+                        { icon: 'ph-magnifying-glass', title: 'Audit Data & Diagnostic', duration: '1 à 3 semaines', desc: 'Un audit structuré de vos données opérationnelles — tableurs, bases de données ou systèmes de reporting terrain — avec détection des anomalies et une feuille de route de correction priorisée.' },
+                        { icon: 'ph-brain', title: 'ML Prédictif Interprétable', duration: '1 à 3 mois', desc: 'Des modèles de prédiction de panne et de classification de cause racine, interprétables via SHAP dès la conception, livrés sous forme de dashboard opérationnel — pas un notebook.' },
+                        { icon: 'ph-robot', title: 'Automatisation Agentique & Monitoring', duration: 'Continu', desc: "Automatisation n8n + LangGraph des workflows récurrents d'opérations terrain — lecture de rapports, classification de statut, alertes — avec suivi post-déploiement." }
+                    ]
+                },
+                skills: {
+                    title: "Expertise Technique", sub: "Un profil complet : de l'ingénierie de données terrain à l'automatisation agentique.",
+                    cards: [
+                        { icon: 'ph-code', color: 'blue', title: 'Python & Ingénierie de Données', desc: 'Pandas, NumPy, SQL, pipelines Scikit-learn' },
+                        { icon: 'ph-brain', color: 'purple', title: 'ML Interprétable', desc: 'Gradient Boosting, SHAP, diagnostic de modèles' },
+                        { icon: 'ph-flow-arrow', color: 'orange', title: 'IA Agentique & Automatisation', desc: 'LangGraph, n8n, orchestration FastAPI' },
+                        { icon: 'ph-layout', color: 'teal', title: 'No-Code / Low-Code', desc: 'AppSheet, Apps Script, Streamlit' }
+                    ]
+                },
+                projects: { title: "Projets Phares", sub: "Des systèmes réels, déployés publiquement — inspirés de programmes d'électrification financés par des bailleurs internationaux en Afrique de l'Ouest, avec des données anonymisées.", lbl_obj: "Le Défi", lbl_stack: "Technologies", lbl_res: "Résultats Clés", lbl_act: "Approche & Impact", demo: "Démo en Ligne", code: "Voir le Code", production: "En Production" },
                 exp: { title: "Parcours Professionnel" },
+                certs: { label: "Certifications", items: ["RNCP Niveau 7 Data Scientist — CentraleSupélec / OpenClassrooms", "AI Automation Engineer with n8n — Coursera (spécialisation 7 cours)", "Building AI Agents and Agentic Workflows — IBM"] },
+                testimonials: {
+                    title: "Témoignages Clients", sub: "Les témoignages apparaîtront ici au fil des missions réalisées.",
+                    placeholder_title: "Bientôt disponible", placeholder_desc: "Cet espace est réservé aux retours des prochaines missions."
+                },
+                contact: {
+                    title: "Travaillons Ensemble", sub: "Parlez-moi de votre projet, ou réservez directement un appel.",
+                    lbl_name: "Nom", lbl_email: "Email", lbl_message: "Message", submit: "Envoyer le Message",
+                    calendly_title: "Vous préférez échanger directement ?", calendly_desc: "Réservez un appel de 30 minutes pour discuter de votre projet.", calendly_btn: "Réserver un Appel",
+                    status_sending: "Envoi en cours…", status_ok: "Merci — votre message a été envoyé. Je réponds sous 48h.",
+                    status_fallback: "Ouverture de votre messagerie avec votre message pré-rempli…", status_error: "Une erreur est survenue — merci de m'écrire directement."
+                },
                 footer: { title: "Prêt à collaborer ?", rights: "Tous droits réservés." },
                 timeline: [
                     { role: "Chef de Service Ingénierie", company: "AIEC (Abidjan)", date: "Avril 2024 – Présent", desc: "Supervision de projets d'électrification et management d'équipes. Analyse de données techniques pour l'optimisation des coûts et délais." },
-                    { role: "Data Scientist (Diplôme Bac+5)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Formation intensive par la pratique. Réalisation de 7 projets complets : Scoring bancaire, Classification d'images, Big Data avec Spark." },
+                    { role: "Data Scientist (RNCP Niveau 7)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Formation intensive par la pratique. Réalisation de 7 projets complets, réorientés ensuite vers les applications énergie et infrastructures." },
                     { role: "Ingénieur Projet", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordination technique et suivi budgétaire. Analyse rigoureuse des indicateurs de performance des chantiers." }
                 ],
                 projects_data: [
                     {
-                        id: 'credit', title: 'Scoring Bancaire & MLOps', tag: 'Finance / MLOps',
-                        obj: 'Développer un outil de scoring crédit pour prédire le risque de défaut client et aider à la décision.',
-                        actions: ['Gestion du déséquilibre de classes (SMOTE).', 'Modèle LightGBM optimisé et interprétable (SHAP).', 'Dashboard Streamlit interactif pour les conseillers.', 'Pipeline CI/CD avec GitHub Actions.'],
-                        chartLabel: 'Importance des Variables (SHAP)',
-                        chartData: [0.85, 0.76, 0.65, 0.45, 0.30],
-                        chartLabels: ['Revenus', 'Dettes', 'Age', 'Montant', 'Historique']
+                        id: 'maintenance', title: 'Maintenance Prédictive Industrielle', tag: 'Énergie · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
+                        obj: "Un système de classification à deux niveaux qui prédit si une machine industrielle va tomber en panne et, le cas échéant, lequel des cinq modes de panne en est la cause racine — pour que les équipes de maintenance corrigent le bon problème au lieu de deviner.",
+                        actions: ["Gradient Boosting calibré sur le compromis rappel/précision pertinent pour le métier, pas sur la seule exactitude.", "Interprétabilité SHAP sur chaque prédiction — chaque mode de panne a sa propre signature physique.", "Déployé sous forme de dashboard Streamlit à 3 pages, consultable directement par l'équipe maintenance."],
+                        stats: [ {value:'0.98', label:'AUC-ROC, prédiction de panne'}, {value:'1.00', label:'F1-score, meilleur mode de panne'}, {value:'5', label:'modes de panne classifiés'} ],
+                        stack: ['Python', 'Scikit-learn', 'SHAP', 'Streamlit'],
+                        demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
-                        id: 'product', title: 'Classification Automatique', tag: 'E-Commerce / Deep Learning',
-                        obj: 'Automatiser la catégorisation de produits sur une marketplace via analyse d\'images et de textes.',
-                        actions: ['Transfer Learning avec VGG16 (CNN) sur les images.', 'NLP avancé (BERT, TF-IDF) sur les descriptions.', 'Pipeline hybride atteignant 92% de précision.'],
-                        chartLabel: 'Précision par Catégorie',
-                        chartData: [95, 88, 92, 85, 90],
-                        chartLabels: ['Montres', 'Maison', 'Tech', 'Livres', 'Beauté']
+                        id: 'forecast', title: "Prévision d'Exécution & Approvisionnement", tag: 'Infrastructure · Prévision', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
+                        obj: "Une suite de 3 modèles prévoyant les besoins matériels, l'avancement des travaux et le risque de retard sur un déploiement d'électrification rurale multi-sites — transformant les rapports de terrain hebdomadaires en signaux de planification prédictifs.",
+                        actions: ["Discipline « baseline d'abord » : un modèle plus complexe n'a été retenu que dans 1 cas comparable sur 4, quand les résultats le justifiaient.", "Le classificateur de risque de retard détecte 93% des chantiers à risque.", "Erreur de prévision environ 2 à 3× plus faible qu'une référence sans modèle."],
+                        stats: [ {value:'93%', label:'taux de détection du risque de retard'}, {value:'3', label:'modules ML — ressources, avancement, risque'}, {value:'55', label:'localités sur 4 départements'} ],
+                        stack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
+                        demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
                     },
                     {
-                        id: 'sentiment', title: 'Analyse Big Data Spark', tag: 'Big Data / Cloud',
-                        obj: 'Analyser des volumes massifs de tweets pour détecter les tendances de sentiment (Bad Buzz).',
-                        actions: ['Déploiement de clusters Spark sur AWS EMR.', 'Scripts PySpark optimisés pour le nettoyage.', 'Régression Logistique pour la classification binaire.'],
-                        chartLabel: 'Volume de Tweets Traités (M)',
-                        chartData: [1.2, 1.5, 3.0, 2.2, 4.1],
-                        chartLabels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai']
+                        id: 'agent', title: 'Agent IA de Relance de Chantier', tag: 'IA Agentique · Automatisation', icon: 'ph-robot', banner: 'from-indigo-500 to-indigo-700',
+                        obj: "Un agent LangGraph + n8n qui lit les rapports de terrain hebdomadaires, résout les noms de localités malgré les variantes orthographiques, et classe automatiquement les chantiers à l'arrêt — remplaçant un tri manuel hebdomadaire.",
+                        actions: ["Agent LangGraph à état à 9 nœuds, avec checkpointing SqliteSaver — l'historique persiste semaine après semaine.", "Le workflow n8n orchestre l'agent derrière une API FastAPI, validé de bout en bout.", "Démo Streamlit publique simulant plusieurs semaines d'historique de chantier sur données synthétiques."],
+                        stats: [ {value:'9', label:'nœuds LangGraph'}, {value:'6', label:'étapes du workflow n8n'}, {value:'100%', label:'données de démo synthétiques — aucune donnée client exposée'} ],
+                        stack: ['LangGraph', 'n8n', 'FastAPI', 'Python'],
+                        demoUrl: 'https://energy-data-scientist-kbqch4dr9lgc3aypv3kmgx.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/smart-jobsite-relaunch-agent'
+                    },
+                    {
+                        id: 'electrack', title: 'ElecTrack Pro', tag: 'Ingénierie Plateforme · SaaS', icon: 'ph-lightning', banner: 'from-slate-700 to-slate-900',
+                        obj: "Une plateforme SaaS multi-tenant, construite sur AppSheet, Google Sheets et Apps Script, pour la gestion des interventions terrain sur des chantiers d'infrastructure électrique — actuellement en production sur 55 localités et 4 départements.",
+                        actions: ["Modèle de données multi-projets normalisé, avec accès par rôle (Admin, Superviseur, Chef de Mission).", "Audit technique et sécurité complet réalisé, avec feuille de route de correction priorisée.", "Modèle de tarification hybride conçu pour une commercialisation en Afrique de l'Ouest francophone."],
+                        stats: [ {value:'55', label:'localités en production'}, {value:'4', label:'départements couverts'}, {value:'3', label:'paliers tarifaires'} ],
+                        stack: ['AppSheet', 'Google Sheets', 'Apps Script'],
+                        demoUrl: '', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/electrack-pro'
                     }
                 ]
             }
@@ -380,49 +563,74 @@
         let currentLang = 'en';
         let charts = {}; // Store chart instances
 
+        const skillColorMap = {
+            blue: { bg: 'bg-blue-50', text: 'text-blue-600' },
+            purple: { bg: 'bg-purple-50', text: 'text-purple-600' },
+            orange: { bg: 'bg-orange-50', text: 'text-orange-600' },
+            teal: { bg: 'bg-teal-50', text: 'text-teal-600' }
+        };
+
         // --- INIT ---
         document.addEventListener('DOMContentLoaded', () => {
             renderLanguage();
             renderHeroChart();
+            renderServices();
+            renderSkills();
             renderProjects();
             renderTimeline();
+            renderCerts();
+            renderTestimonials();
             loadProject(0); // Load first project
         });
 
         // --- FUNCTIONS ---
 
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('open');
+        }
+
         function setLanguage(lang) {
             currentLang = lang;
-            
-            // Toggle Buttons
-            const btnEn = document.getElementById('btn-en');
-            const btnFr = document.getElementById('btn-fr');
-            if(lang === 'en') {
-                btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
-                btnFr.className = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
-            } else {
-                btnFr.className = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
-                btnEn.className = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
-            }
+
+            // Toggle Buttons (desktop + mobile)
+            const active = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+            const inactive = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
+            const activeM = "px-2.5 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+            const inactiveM = "px-2.5 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
+
+            document.getElementById('btn-en').className = lang === 'en' ? active : inactive;
+            document.getElementById('btn-fr').className = lang === 'fr' ? active : inactive;
+            document.getElementById('btn-en-m').className = lang === 'en' ? activeM : inactiveM;
+            document.getElementById('btn-fr-m').className = lang === 'fr' ? activeM : inactiveM;
 
             // Re-render everything
             renderLanguage();
-            renderHeroChart(); // Re-render to update labels if needed
+            renderHeroChart();
+            renderServices();
+            renderSkills();
             renderProjects();
             renderTimeline();
+            renderCerts();
+            renderTestimonials();
             loadProject(0);
         }
 
         function renderLanguage() {
             const t = content[currentLang];
-            
+
             // Nav
             document.getElementById('nav-role').textContent = t.nav.role;
             document.getElementById('nav-about').textContent = t.nav.about;
+            document.getElementById('nav-services').textContent = t.nav.services;
             document.getElementById('nav-projects').textContent = t.nav.projects;
-            document.getElementById('nav-skills').textContent = t.nav.skills;
             document.getElementById('nav-exp').textContent = t.nav.exp;
-            document.getElementById('nav-contact').textContent = t.nav.contact;
+            document.getElementById('nav-contact-link').textContent = t.nav.contact;
+            document.getElementById('nav-contact').textContent = t.nav.contactBtn;
+            document.getElementById('nav-about-m').textContent = t.nav.about;
+            document.getElementById('nav-services-m').textContent = t.nav.services;
+            document.getElementById('nav-projects-m').textContent = t.nav.projects;
+            document.getElementById('nav-exp-m').textContent = t.nav.exp;
+            document.getElementById('nav-contact-m').textContent = t.nav.contact;
 
             // Hero
             document.getElementById('hero-badge').textContent = t.hero.badge;
@@ -432,28 +640,83 @@
             document.getElementById('chart-title').textContent = t.hero.chart_title;
 
             // Section Titles
+            document.getElementById('services-title').textContent = t.services.title;
+            document.getElementById('services-sub').textContent = t.services.sub;
+            document.getElementById('services-stack-label').textContent = t.services.stack_label;
             document.getElementById('skills-title').textContent = t.skills.title;
             document.getElementById('skills-sub').textContent = t.skills.sub;
             document.getElementById('projects-title').textContent = t.projects.title;
             document.getElementById('projects-sub').textContent = t.projects.sub;
             document.getElementById('exp-title').textContent = t.exp.title;
-            
+            document.getElementById('certs-label').textContent = t.certs.label;
+            document.getElementById('testimonials-title').textContent = t.testimonials.title;
+            document.getElementById('testimonials-sub').textContent = t.testimonials.sub;
+            document.getElementById('contact-title').textContent = t.contact.title;
+            document.getElementById('contact-sub').textContent = t.contact.sub;
+
             // Labels in Detail View
             document.getElementById('lbl-objective').textContent = t.projects.lbl_obj;
             document.getElementById('lbl-stack').textContent = t.projects.lbl_stack;
             document.getElementById('lbl-results').textContent = t.projects.lbl_res;
             document.getElementById('lbl-actions').textContent = t.projects.lbl_act;
 
+            // Contact form
+            document.getElementById('lbl-name').textContent = t.contact.lbl_name;
+            document.getElementById('lbl-email').textContent = t.contact.lbl_email;
+            document.getElementById('lbl-message').textContent = t.contact.lbl_message;
+            document.getElementById('cf-submit').querySelector('span').textContent = t.contact.submit;
+            document.getElementById('calendly-title').textContent = t.contact.calendly_title;
+            document.getElementById('calendly-desc').textContent = t.contact.calendly_desc;
+            document.getElementById('calendly-btn').querySelector('span').textContent = t.contact.calendly_btn;
+
             // Footer
             document.getElementById('footer-title').textContent = t.footer.title;
             document.getElementById('footer-rights').textContent = t.footer.rights;
+        }
+
+        function renderServices() {
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+            content[currentLang].services.cards.forEach(c => {
+                const div = document.createElement('div');
+                div.className = "bg-white p-7 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition";
+                div.innerHTML = `
+                    <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mb-5">
+                        <i class="ph ${c.icon} text-2xl"></i>
+                    </div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <h3 class="font-bold text-slate-900">${c.title}</h3>
+                    </div>
+                    <span class="inline-block text-[11px] font-semibold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full mb-3">${c.duration}</span>
+                    <p class="text-sm text-slate-500 leading-relaxed">${c.desc}</p>
+                `;
+                grid.appendChild(div);
+            });
+        }
+
+        function renderSkills() {
+            const grid = document.getElementById('skills-grid');
+            grid.innerHTML = '';
+            content[currentLang].skills.cards.forEach(c => {
+                const colors = skillColorMap[c.color] || skillColorMap.teal;
+                const div = document.createElement('div');
+                div.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group";
+                div.innerHTML = `
+                    <div class="w-12 h-12 ${colors.bg} ${colors.text} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
+                        <i class="ph ${c.icon} text-2xl"></i>
+                    </div>
+                    <h3 class="font-bold text-slate-900">${c.title}</h3>
+                    <p class="text-xs text-slate-500 mt-1">${c.desc}</p>
+                `;
+                grid.appendChild(div);
+            });
         }
 
         function renderProjects() {
             const list = document.getElementById('project-list-container');
             list.innerHTML = '';
             const data = content[currentLang].projects_data;
-            
+
             data.forEach((p, index) => {
                 const card = document.createElement('div');
                 card.className = `project-card p-4 rounded-lg bg-white border border-slate-100 cursor-pointer hover:shadow-md transition group`;
@@ -461,10 +724,13 @@
                 card.id = `card-${index}`;
                 card.innerHTML = `
                     <div class="flex justify-between items-center mb-1">
-                        <h4 class="font-bold text-slate-800 group-hover:text-teal-700 transition">${p.title}</h4>
+                        <div class="flex items-center gap-2">
+                            <i class="ph ${p.icon} text-teal-600"></i>
+                            <h4 class="font-bold text-slate-800 group-hover:text-teal-700 transition">${p.title}</h4>
+                        </div>
                         <i class="ph ph-caret-right text-slate-300"></i>
                     </div>
-                    <p class="text-xs text-slate-500 font-medium">${p.tag}</p>
+                    <p class="text-xs text-slate-500 font-medium pl-6">${p.tag}</p>
                 `;
                 list.appendChild(card);
             });
@@ -472,16 +738,23 @@
 
         function loadProject(index) {
             const data = content[currentLang].projects_data[index];
-            
+            const t = content[currentLang].projects;
+
             // Active State
             document.querySelectorAll('.project-card').forEach(c => c.classList.remove('active'));
-            document.getElementById(`card-${index}`).classList.add('active');
+            const activeCard = document.getElementById(`card-${index}`);
+            if (activeCard) activeCard.classList.add('active');
+
+            // Banner
+            const banner = document.getElementById('detail-banner');
+            banner.className = `rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br ${data.banner}`;
+            document.getElementById('detail-icon').className = `ph ${data.icon} text-white/20 text-[7rem] absolute -right-2 -bottom-4`;
 
             // Populate Details
             document.getElementById('detail-tag').textContent = data.tag;
             document.getElementById('detail-title').textContent = data.title;
             document.getElementById('detail-obj').textContent = data.obj;
-            
+
             const actionsList = document.getElementById('detail-actions');
             actionsList.innerHTML = '';
             data.actions.forEach(a => {
@@ -493,18 +766,37 @@
             // Stack Badges
             const stackContainer = document.getElementById('detail-stack');
             stackContainer.innerHTML = '';
-            // Infer stack from tag/actions context for demo
-            const stackMap = { 'credit': ['Python', 'LightGBM', 'Flask', 'GitHub Actions'], 'product': ['TensorFlow', 'Keras', 'BERT', 'Python'], 'sentiment': ['Spark', 'AWS EMR', 'Python', 'SQL'] };
-            const stack = stackMap[data.id] || ['Python', 'Data Science'];
-            stack.forEach(s => {
+            data.stack.forEach(s => {
                 const span = document.createElement('span');
                 span.className = "px-2 py-1 bg-slate-100 text-slate-600 text-xs rounded border border-slate-200";
                 span.textContent = s;
                 stackContainer.appendChild(span);
             });
 
-            // Update Chart
-            renderProjectChart(data);
+            // Stat Tiles
+            const statsContainer = document.getElementById('detail-stats');
+            statsContainer.innerHTML = '';
+            data.stats.forEach(s => {
+                const div = document.createElement('div');
+                div.className = "flex items-baseline gap-3 border-b border-slate-200 last:border-b-0 pb-3 last:pb-0";
+                div.innerHTML = `
+                    <span class="stat-value text-2xl font-extrabold text-teal-700 whitespace-nowrap">${s.value}</span>
+                    <span class="text-xs text-slate-500 leading-tight">${s.label}</span>
+                `;
+                statsContainer.appendChild(div);
+            });
+
+            // Links
+            const linksContainer = document.getElementById('detail-links');
+            linksContainer.innerHTML = '';
+            if (data.demoUrl) {
+                linksContainer.innerHTML += `<a href="${data.demoUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold rounded-lg transition"><i class="ph ph-arrow-square-out"></i> ${t.demo}</a>`;
+            } else {
+                linksContainer.innerHTML += `<span class="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-100 text-slate-500 text-xs font-bold rounded-lg"><i class="ph ph-check-circle"></i> ${t.production}</span>`;
+            }
+            if (data.codeUrl) {
+                linksContainer.innerHTML += `<a href="${data.codeUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-lg transition"><i class="ph ph-github-logo"></i> ${t.code}</a>`;
+            }
         }
 
         function renderTimeline() {
@@ -528,19 +820,97 @@
             });
         }
 
+        function renderCerts() {
+            const container = document.getElementById('certs-grid');
+            container.innerHTML = '';
+            content[currentLang].certs.items.forEach(c => {
+                const span = document.createElement('span');
+                span.className = "inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-sm";
+                span.innerHTML = `<i class="ph ph-medal text-teal-600"></i> ${c}`;
+                container.appendChild(span);
+            });
+        }
+
+        function renderTestimonials() {
+            const container = document.getElementById('testimonials-grid');
+            container.innerHTML = '';
+            const t = content[currentLang].testimonials;
+            for (let i = 0; i < 3; i++) {
+                const div = document.createElement('div');
+                div.className = "testimonial-placeholder rounded-xl p-7 bg-white/50 flex flex-col items-center justify-center text-center min-h-[180px]";
+                div.innerHTML = `
+                    <i class="ph ph-quotes text-3xl text-slate-300 mb-3"></i>
+                    <h4 class="text-sm font-bold text-slate-400">${t.placeholder_title}</h4>
+                    <p class="text-xs text-slate-400 mt-1 max-w-[220px]">${t.placeholder_desc}</p>
+                `;
+                container.appendChild(div);
+            }
+        }
+
+        // --- CONTACT HANDLERS ---
+
+        function handleBookCall() {
+            const t = content[currentLang].contact;
+            if (CONTACT_CONFIG.calendlyUrl) {
+                window.open(CONTACT_CONFIG.calendlyUrl, '_blank', 'noopener');
+            } else {
+                const subject = encodeURIComponent(currentLang === 'fr' ? 'Demande de rendez-vous' : 'Call booking request');
+                const body = encodeURIComponent(currentLang === 'fr' ? "Bonjour Médico,\n\nJe souhaite réserver un appel pour discuter d'un projet.\n\nDisponibilités :" : "Hi Médico,\n\nI'd like to book a call to discuss a project.\n\nMy availability:");
+                window.location.href = `mailto:${CONTACT_CONFIG.fallbackEmail}?subject=${subject}&body=${body}`;
+            }
+        }
+
+        document.getElementById('contact-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const t = content[currentLang].contact;
+            const statusEl = document.getElementById('cf-status');
+            const name = document.getElementById('cf-name').value;
+            const email = document.getElementById('cf-email').value;
+            const message = document.getElementById('cf-message').value;
+
+            if (CONTACT_CONFIG.formspreeEndpoint) {
+                statusEl.className = "text-sm text-center pt-1 text-slate-500";
+                statusEl.textContent = t.status_sending;
+                try {
+                    const res = await fetch(CONTACT_CONFIG.formspreeEndpoint, {
+                        method: 'POST',
+                        headers: { 'Accept': 'application/json' },
+                        body: new FormData(this)
+                    });
+                    if (res.ok) {
+                        statusEl.className = "text-sm text-center pt-1 text-teal-700 font-medium";
+                        statusEl.textContent = t.status_ok;
+                        this.reset();
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                } catch (err) {
+                    statusEl.className = "text-sm text-center pt-1 text-red-600 font-medium";
+                    statusEl.textContent = t.status_error;
+                }
+            } else {
+                // Fallback: open a pre-filled mailto link until Formspree is configured
+                statusEl.className = "text-sm text-center pt-1 text-slate-500";
+                statusEl.textContent = t.status_fallback;
+                const subject = encodeURIComponent(currentLang === 'fr' ? `Message du site — ${name}` : `Website message — ${name}`);
+                const body = encodeURIComponent(`${message}\n\n—\n${name} (${email})`);
+                window.location.href = `mailto:${CONTACT_CONFIG.fallbackEmail}?subject=${subject}&body=${body}`;
+            }
+        });
+
         // --- CHARTS ---
 
         function renderHeroChart() {
             const ctx = document.getElementById('heroChart').getContext('2d');
-            if(charts.hero) charts.hero.destroy();
+            if (charts.hero) charts.hero.destroy();
 
             charts.hero = new Chart(ctx, {
                 type: 'radar',
                 data: {
-                    labels: ['Engineering', 'Python/Dev', 'Machine Learning', 'Leadership', 'Big Data', 'MLOps'],
+                    labels: content[currentLang].hero.radar_labels,
                     datasets: [{
-                        label: 'Skill Level',
-                        data: [95, 85, 80, 90, 70, 75],
+                        label: content[currentLang].hero.chart_title,
+                        data: [95, 85, 85, 90, 88, 82],
                         fill: true,
                         backgroundColor: 'rgba(20, 184, 166, 0.2)', // Teal-500
                         borderColor: '#0d9488', // Teal-600
@@ -555,48 +925,18 @@
                     maintainAspectRatio: false,
                     scales: {
                         r: {
+                            min: 0,
+                            max: 100,
                             angleLines: { color: '#e2e8f0' },
                             grid: { color: '#e2e8f0' },
                             pointLabels: {
                                 font: { size: 12, family: 'Inter', weight: '600' },
                                 color: '#64748b'
                             },
-                            ticks: { display: false, max: 100 }
+                            ticks: { display: false }
                         }
                     },
                     plugins: { legend: { display: false } }
-                }
-            });
-        }
-
-        function renderProjectChart(data) {
-            const ctx = document.getElementById('projectChart').getContext('2d');
-            if(charts.project) charts.project.destroy();
-
-            // Use Bar for all for simplicity and clarity in "Results"
-            charts.project = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: data.chartLabels,
-                    datasets: [{
-                        label: data.chartLabel,
-                        data: data.chartData,
-                        backgroundColor: '#0F766E',
-                        borderRadius: 4,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: { backgroundColor: '#1e293b', padding: 10 }
-                    },
-                    scales: {
-                        y: { beginAtZero: true, grid: { borderDash: [2, 4] } },
-                        x: { grid: { display: false } }
-                    }
                 }
             });
         }
