@@ -76,12 +76,15 @@
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden md:flex items-center space-x-7">
+                <div class="hidden lg:flex items-center space-x-7">
                     <a href="#about" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-about">About</a>
                     <a href="#services" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-services">Services</a>
                     <a href="#projects" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-projects">Projects</a>
                     <a href="#experience" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-exp">Experience</a>
                     <a href="#contact" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-contact-link">Contact</a>
+                    <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv" class="hidden xl:inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-teal-700 transition">
+                        <i class="ph ph-download-simple"></i><span>CV</span>
+                    </a>
 
                     <!-- Language Switcher -->
                     <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
@@ -95,7 +98,7 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="flex md:hidden items-center gap-2">
+                <div class="flex lg:hidden items-center gap-2">
                     <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
                         <button onclick="setLanguage('en')" id="btn-en-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
                         <button onclick="setLanguage('fr')" id="btn-fr-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
@@ -107,12 +110,15 @@
             </div>
 
             <!-- Mobile Menu Panel -->
-            <div id="mobile-menu" class="md:hidden border-t border-slate-100 py-3 space-y-1">
+            <div id="mobile-menu" class="lg:hidden border-t border-slate-100 py-3 space-y-1">
                 <a href="#about" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-about-m">About</a>
                 <a href="#services" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-services-m">Services</a>
                 <a href="#projects" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-projects-m">Projects</a>
                 <a href="#experience" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-exp-m">Experience</a>
                 <a href="#contact" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-contact-m">Contact</a>
+                <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv-m" onclick="toggleMobileMenu()" class="flex items-center gap-1.5 px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700">
+                    <i class="ph ph-download-simple"></i><span>CV</span>
+                </a>
             </div>
         </div>
     </nav>
@@ -138,6 +144,10 @@
                 <div class="flex flex-wrap gap-4">
                     <a href="#projects" id="hero-cta" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition shadow-lg flex items-center gap-2">
                         View Projects <i class="ph ph-arrow-right"></i>
+                    </a>
+                    <!-- CV download: href/label are set per language in renderLanguage() -->
+                    <a href="cv/Medico_Diomande_CV_EN.pdf" download id="hero-cv" class="bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition shadow-lg flex items-center gap-2">
+                        <i class="ph ph-download-simple text-xl"></i> <span>Download CV</span>
                     </a>
                     <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
                         <i class="ph ph-github-logo text-xl"></i> GitHub
@@ -288,8 +298,9 @@
             </div>
         </section>
 
-        <!-- TESTIMONIALS SECTION -->
-        <section id="testimonials" class="py-20 bg-slate-50 border-t border-slate-200">
+        <!-- TESTIMONIALS SECTION — hidden until real client feedback exists.
+             To publish it: remove the "hidden" class below and replace the placeholders in renderTestimonials(). -->
+        <section id="testimonials" class="hidden py-20 bg-slate-50 border-t border-slate-200">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                 <h2 id="testimonials-title" class="text-3xl font-bold text-slate-900">Client Testimonials</h2>
                 <p id="testimonials-sub" class="mt-4 text-slate-600 max-w-2xl mx-auto mb-12">Testimonials will appear here as new missions are completed.</p>
@@ -363,7 +374,7 @@
                     <i class="ph ph-envelope-simple text-xl"></i> dmedcos@yahoo.fr
                 </a>
                 <a href="tel:+2250708276664" class="hover:text-teal-400 transition flex items-center gap-2">
-                    <i class="ph ph-phone text-xl"></i> +225 07 08 276 664
+                    <i class="ph ph-phone text-xl"></i> +225 07 08 27 66 64
                 </a>
                 <a href="https://linkedin.com/in/medico-diomande-data" class="hover:text-teal-400 transition flex items-center gap-2">
                     <i class="ph ph-linkedin-logo text-xl"></i> LinkedIn
@@ -387,16 +398,23 @@
             fallbackEmail: 'dmedcos@yahoo.fr'
         };
 
+        // --- CV FILES (one PDF per language; overwrite the files in /cv to update the CV, keep the names) ---
+        const CV_FILES = {
+            en: 'cv/Medico_Diomande_CV_EN.pdf',
+            fr: 'cv/Medico_Diomande_CV_FR.pdf'
+        };
+
         // --- DATA STORE (BILINGUAL) ---
         const content = {
             en: {
-                nav: { role: "Energy Data Scientist", about: "About", services: "Services", projects: "Projects", exp: "Experience", contact: "Contact", contactBtn: "Contact Me" },
+                nav: { role: "Energy Data Scientist", about: "About", services: "Services", projects: "Projects", exp: "Experience", contact: "Contact", cv: "CV", contactBtn: "Contact Me" },
                 hero: {
                     badge: "🚀 Available for remote consulting missions",
                     title_start: "Energy Data Science &",
                     title_end: "Infrastructure Intelligence.",
                     desc: "10+ years running World Bank, AFD and AfDB-funded electrification worksites, now applying machine learning and agentic AI automation to the same physical infrastructure problems — predictive maintenance, rollout forecasting, and field-operations intelligence.",
                     cta: "View Projects",
+                    cv: "Download CV",
                     chart_title: "Skill Matrix",
                     radar_labels: ['Field Engineering', 'Python / ML', 'Agentic AI', 'Leadership', 'Interpretability', 'Automation']
                 },
@@ -420,7 +438,7 @@
                 },
                 projects: { title: "Flagship Projects", sub: "Real, publicly deployed systems inspired by donor-financed electrification programs in West Africa — data anonymized throughout.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Key Results", lbl_act: "Approach & Impact", demo: "Live Demo", code: "View Code", production: "In Production" },
                 exp: { title: "Professional Journey" },
-                certs: { label: "Certifications", items: ["RNCP Level 7 Data Scientist — CentraleSupélec / OpenClassrooms", "AI Automation Engineer with n8n — Coursera (7-course specialization)", "Building AI Agents and Agentic Workflows — IBM"] },
+                certs: { label: "Certifications", items: ["RNCP Level 7 Data Scientist — CentraleSupélec / OpenClassrooms", "Building AI Agents and Agentic Workflows — IBM"] },
                 testimonials: {
                     title: "Client Testimonials", sub: "Testimonials will appear here as new missions are completed.",
                     placeholder_title: "Coming soon", placeholder_desc: "This space is reserved for feedback from upcoming missions."
@@ -436,21 +454,21 @@
                 timeline: [
                     { role: "Head of Engineering Department", company: "AIEC (Abidjan)", date: "Apr 2024 – Present", desc: "Managing technical teams and large-scale electrification projects. Using data analytics to optimize budget allocation and resource planning." },
                     { role: "Data Scientist (RNCP Level 7)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Intensive project-based training. Delivered 7+ end-to-end data solutions, later redirected toward energy and infrastructure applications." },
-                    { role: "Project Engineer", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordinated cross-functional teams. Analyzed operational data to improve project efficiency and safety standards." }
+                    { role: "Project Engineer", company: "AIEC (Abidjan)", date: "2016 – Mar 2024", desc: "Coordinated cross-functional teams. Analyzed operational data to improve project efficiency and safety standards." }
                 ],
                 projects_data: [
                     {
                         id: 'maintenance', title: 'Predictive Maintenance for Industrial Machines', tag: 'Energy · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
-                        obj: 'A two-level classification system predicting whether an industrial machine will fail and, if so, which of five failure modes is the root cause — so maintenance teams act on the right fix instead of guessing.',
+                        obj: 'A two-level classification system predicting whether an industrial machine will fail and, if so, which of three failure modes (heat dissipation, power, overstrain) is the root cause — so maintenance teams act on the right fix instead of guessing. Built on a public benchmark dataset.',
                         actions: ['Gradient Boosting tuned for the business trade-off between recall and precision, not raw accuracy.', 'SHAP interpretability on every prediction — each failure mode has its own physical signature.', 'Deployed as a 3-page Streamlit dashboard the maintenance team can query directly.'],
-                        stats: [ {value:'0.98', label:'AUC-ROC, failure prediction'}, {value:'1.00', label:'F1-score, best root-cause mode'}, {value:'5', label:'failure modes classified'} ],
+                        stats: [ {value:'0.98', label:'AUC-ROC, failure prediction'}, {value:'0.94–1.00', label:'F1-score per root-cause mode'}, {value:'3', label:'failure modes predicted, with per-mode thresholds'} ],
                         stack: ['Python', 'Scikit-learn', 'SHAP', 'Streamlit'],
                         demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
                         id: 'forecast', title: 'Predictive Rollout & Supply Forecast', tag: 'Infrastructure · Forecasting', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
                         obj: 'A 3-model suite forecasting material needs, construction progress, and delay risk across a multi-site rural electrification rollout — turning weekly field reports into forward-looking planning signals.',
-                        actions: ['Baseline-first discipline: a more complex model was kept in only 1 of 4 comparable cases, when the evidence justified it.', 'Delay-risk classifier flags at-risk worksites with 93% detection.', 'Forecast error runs roughly 2–3× lower than a no-model baseline.'],
+                        actions: ['Baseline-first discipline: a more complex model was kept in only 1 of 4 comparable cases, when the evidence justified it.', 'Delay-risk classifier flags at-risk worksites with 93% detection.', 'Material-forecast error runs roughly 2–3× lower than a no-model baseline.'],
                         stats: [ {value:'93%', label:'delay-risk detection rate'}, {value:'3', label:'ML modules — resources, progress, risk'}, {value:'55', label:'localities across 4 departments'} ],
                         stack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
                         demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
@@ -474,13 +492,14 @@
                 ]
             },
             fr: {
-                nav: { role: "Data Scientist Énergie", about: "À propos", services: "Services", projects: "Projets", exp: "Parcours", contact: "Contact", contactBtn: "Me Contacter" },
+                nav: { role: "Data Scientist Énergie", about: "À propos", services: "Services", projects: "Projets", exp: "Parcours", contact: "Contact", cv: "CV", contactBtn: "Me Contacter" },
                 hero: {
                     badge: "🚀 Disponible pour des missions de conseil à distance",
                     title_start: "Data Science Énergie &",
                     title_end: "Intelligence des Infrastructures.",
                     desc: "10+ ans à piloter des chantiers d'électrification financés par la Banque Mondiale, l'AFD et la BAD, désormais mis au service du Machine Learning et de l'automatisation par IA agentique sur ces mêmes problématiques terrain : maintenance prédictive, prévision d'exécution et intelligence des opérations de chantier.",
                     cta: "Voir mes projets",
+                    cv: "Télécharger le CV",
                     chart_title: "Matrice de Compétences",
                     radar_labels: ['Ingénierie Terrain', 'Python / ML', 'IA Agentique', 'Leadership', 'Interprétabilité', 'Automatisation']
                 },
@@ -504,7 +523,7 @@
                 },
                 projects: { title: "Projets Phares", sub: "Des systèmes réels, déployés publiquement — inspirés de programmes d'électrification financés par des bailleurs internationaux en Afrique de l'Ouest, avec des données anonymisées.", lbl_obj: "Le Défi", lbl_stack: "Technologies", lbl_res: "Résultats Clés", lbl_act: "Approche & Impact", demo: "Démo en Ligne", code: "Voir le Code", production: "En Production" },
                 exp: { title: "Parcours Professionnel" },
-                certs: { label: "Certifications", items: ["RNCP Niveau 7 Data Scientist — CentraleSupélec / OpenClassrooms", "AI Automation Engineer with n8n — Coursera (spécialisation 7 cours)", "Building AI Agents and Agentic Workflows — IBM"] },
+                certs: { label: "Certifications", items: ["RNCP Niveau 7 Data Scientist — CentraleSupélec / OpenClassrooms", "Building AI Agents and Agentic Workflows — IBM"] },
                 testimonials: {
                     title: "Témoignages Clients", sub: "Les témoignages apparaîtront ici au fil des missions réalisées.",
                     placeholder_title: "Bientôt disponible", placeholder_desc: "Cet espace est réservé aux retours des prochaines missions."
@@ -520,21 +539,21 @@
                 timeline: [
                     { role: "Chef de Service Ingénierie", company: "AIEC (Abidjan)", date: "Avril 2024 – Présent", desc: "Supervision de projets d'électrification et management d'équipes. Analyse de données techniques pour l'optimisation des coûts et délais." },
                     { role: "Data Scientist (RNCP Niveau 7)", company: "OpenClassrooms / CentraleSupélec", date: "2022 – 2025", desc: "Formation intensive par la pratique. Réalisation de 7 projets complets, réorientés ensuite vers les applications énergie et infrastructures." },
-                    { role: "Ingénieur Projet", company: "AIEC (Abidjan)", date: "2017 – 2024", desc: "Coordination technique et suivi budgétaire. Analyse rigoureuse des indicateurs de performance des chantiers." }
+                    { role: "Ingénieur Projet", company: "AIEC (Abidjan)", date: "2016 – Mars 2024", desc: "Coordination technique et suivi budgétaire. Analyse rigoureuse des indicateurs de performance des chantiers." }
                 ],
                 projects_data: [
                     {
                         id: 'maintenance', title: 'Maintenance Prédictive Industrielle', tag: 'Énergie · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
-                        obj: "Un système de classification à deux niveaux qui prédit si une machine industrielle va tomber en panne et, le cas échéant, lequel des cinq modes de panne en est la cause racine — pour que les équipes de maintenance corrigent le bon problème au lieu de deviner.",
+                        obj: "Un système de classification à deux niveaux qui prédit si une machine industrielle va tomber en panne et, le cas échéant, lequel de trois modes de panne (surchauffe, puissance, surcontrainte) en est la cause racine — pour que les équipes de maintenance corrigent le bon problème au lieu de deviner. Construit sur un jeu de données public de référence.",
                         actions: ["Gradient Boosting calibré sur le compromis rappel/précision pertinent pour le métier, pas sur la seule exactitude.", "Interprétabilité SHAP sur chaque prédiction — chaque mode de panne a sa propre signature physique.", "Déployé sous forme de dashboard Streamlit à 3 pages, consultable directement par l'équipe maintenance."],
-                        stats: [ {value:'0.98', label:'AUC-ROC, prédiction de panne'}, {value:'1.00', label:'F1-score, meilleur mode de panne'}, {value:'5', label:'modes de panne classifiés'} ],
+                        stats: [ {value:'0,98', label:'AUC-ROC, prédiction de panne'}, {value:'0,94–1,00', label:'F1-score par mode de panne'}, {value:'3', label:'modes de panne prédits, avec seuils propres à chaque mode'} ],
                         stack: ['Python', 'Scikit-learn', 'SHAP', 'Streamlit'],
                         demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
                         id: 'forecast', title: "Prévision d'Exécution & Approvisionnement", tag: 'Infrastructure · Prévision', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
                         obj: "Une suite de 3 modèles prévoyant les besoins matériels, l'avancement des travaux et le risque de retard sur un déploiement d'électrification rurale multi-sites — transformant les rapports de terrain hebdomadaires en signaux de planification prédictifs.",
-                        actions: ["Discipline « baseline d'abord » : un modèle plus complexe n'a été retenu que dans 1 cas comparable sur 4, quand les résultats le justifiaient.", "Le classificateur de risque de retard détecte 93% des chantiers à risque.", "Erreur de prévision environ 2 à 3× plus faible qu'une référence sans modèle."],
+                        actions: ["Discipline « baseline d'abord » : un modèle plus complexe n'a été retenu que dans 1 cas comparable sur 4, quand les résultats le justifiaient.", "Le classificateur de risque de retard détecte 93% des chantiers à risque.", "Erreur de prévision des besoins matériels environ 2 à 3× plus faible qu'une référence sans modèle."],
                         stats: [ {value:'93%', label:'taux de détection du risque de retard'}, {value:'3', label:'modules ML — ressources, avancement, risque'}, {value:'55', label:'localités sur 4 départements'} ],
                         stack: ['Python', 'Scikit-learn', 'Pandas', 'Streamlit'],
                         demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
@@ -638,6 +657,17 @@
             document.getElementById('hero-desc').textContent = t.hero.desc;
             document.getElementById('hero-cta').innerHTML = `${t.hero.cta} <i class="ph ph-arrow-right"></i>`;
             document.getElementById('chart-title').textContent = t.hero.chart_title;
+
+            // CV download (label + PDF follow the selected language)
+            const cvFile = CV_FILES[currentLang];
+            ['hero-cv', 'nav-cv', 'nav-cv-m'].forEach(id => {
+                const el = document.getElementById(id);
+                el.href = cvFile;
+                el.setAttribute('download', cvFile.split('/').pop());
+            });
+            document.getElementById('hero-cv').querySelector('span').textContent = t.hero.cv;
+            document.getElementById('nav-cv').querySelector('span').textContent = t.nav.cv;
+            document.getElementById('nav-cv-m').querySelector('span').textContent = t.nav.cv;
 
             // Section Titles
             document.getElementById('services-title').textContent = t.services.title;
