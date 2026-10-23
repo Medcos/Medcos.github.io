@@ -6,17 +6,55 @@
     <meta name="description" content="Médico DIOMANDE — Energy Data Scientist & Infrastructure Intelligence Specialist. 10+ years of electrification field engineering, now applied to predictive maintenance, rollout forecasting and agentic AI automation.">
     <title>Médico DIOMANDE | Energy Data Scientist & Infrastructure Intelligence</title>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta name="theme-color" content="#0f766e">
+    <link rel="canonical" href="https://medcos.github.io/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f766e'/%3E%3Ctext x='32' y='46' font-family='Arial,Helvetica,sans-serif' font-size='40' font-weight='700' text-anchor='middle' fill='%23fff'%3EM%3C/text%3E%3C/svg%3E">
 
-    <!-- Chart.js for Data Viz -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Open Graph / social preview (LinkedIn, WhatsApp, X…) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Médico DIOMANDE">
+    <meta property="og:title" content="Médico DIOMANDE | Energy Data Scientist & Infrastructure Intelligence">
+    <meta property="og:description" content="Médico DIOMANDE — Energy Data Scientist & Infrastructure Intelligence Specialist. 10+ years of electrification field engineering, now applied to predictive maintenance, rollout forecasting and agentic AI automation.">
+    <meta property="og:url" content="https://medcos.github.io/">
+    <meta property="og:image" content="https://medcos.github.io/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Médico DIOMANDE — Energy Data Science &amp; Infrastructure Intelligence">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="fr_FR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Médico DIOMANDE | Energy Data Scientist & Infrastructure Intelligence">
+    <meta name="twitter:description" content="Médico DIOMANDE — Energy Data Scientist & Infrastructure Intelligence Specialist. 10+ years of electrification field engineering, now applied to predictive maintenance, rollout forecasting and agentic AI automation.">
+    <meta name="twitter:image" content="https://medcos.github.io/images/og-image.png">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Médico DIOMANDE",
+      "jobTitle": "Energy Data Scientist & Infrastructure Intelligence Specialist",
+      "url": "https://medcos.github.io/",
+      "worksFor": { "@type": "Organization", "name": "AIEC" },
+      "sameAs": [
+        "https://linkedin.com/in/medico-diomande-data",
+        "https://github.com/medcos"
+      ],
+      "knowsAbout": ["Predictive maintenance", "Machine learning", "Agentic AI", "Rural electrification", "Infrastructure project management"]
+    }
+    </script>
 
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-    <!-- Icons (Phosphor Icons - Lightweight & Clean) -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Styles: Tailwind compiled locally (see README.md / _build/), Phosphor icons self-hosted -->
+    <link rel="preload" href="assets/vendor/phosphor/Phosphor.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="assets/tailwind.css">
+    <link rel="stylesheet" href="assets/vendor/phosphor/style.css">
+
+    <!-- Chart.js 4.4.7 (self-hosted, deferred) -->
+    <script src="assets/vendor/chart.umd.js" defer></script>
 
     <style>
         body { font-family: 'Inter', sans-serif; }
@@ -54,70 +92,87 @@
 
         /* Testimonial placeholder dashed border */
         .testimonial-placeholder { border: 1.5px dashed #cbd5e1; }
+
+        /* Anchor links land below the sticky nav; smooth scroll only if the user allows motion */
+        html { scroll-padding-top: 5rem; }
+        @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+        /* Consistent, visible keyboard focus */
+        :focus-visible { outline: 2px solid #0f766e; outline-offset: 2px; }
+        .bg-slate-900 :focus-visible, footer :focus-visible { outline-color: #5eead4; }
+
+        /* Respect reduced-motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+            .hover\:-translate-y-0\.5:hover { transform: none !important; }
+            .group:hover .group-hover\:scale-110 { transform: none !important; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 flex flex-col min-h-screen">
 
+    <a href="#main" id="skip-link" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:bg-white focus:text-teal-800 focus:font-semibold focus:px-4 focus:py-3 focus:rounded-lg focus:shadow-lg">Skip to main content</a>
+
     <!-- NAVIGATION BAR -->
-    <nav class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100">
+    <nav id="main-nav" aria-label="Main navigation" class="bg-white sticky top-0 z-50 shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
                 <!-- Logo / Name -->
                 <div class="flex items-center">
-                    <div class="flex-shrink-0 flex items-center gap-3">
-                        <div class="h-10 w-10 bg-teal-700 rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    <div class="flex-shrink-0 flex items-center gap-2 sm:gap-3">
+                        <div aria-hidden="true" class="hidden sm:flex h-10 w-10 bg-teal-700 rounded-lg items-center justify-center text-white font-bold text-xl shadow-md">
                             M
                         </div>
                         <div>
-                            <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900">Médico DIOMANDE</h1>
-                            <p class="text-xs text-teal-600 font-semibold uppercase tracking-wider" id="nav-role">Energy Data Scientist</p>
+                            <p class="font-bold text-base sm:text-lg leading-tight tracking-tight text-slate-900">Médico DIOMANDE</p>
+                            <p class="max-[359px]:hidden text-xs text-teal-700 font-semibold uppercase tracking-wider" id="nav-role">Energy Data Scientist</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-7">
-                    <a href="#about" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-about">About</a>
-                    <a href="#services" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-services">Services</a>
-                    <a href="#projects" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-projects">Projects</a>
-                    <a href="#experience" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-exp">Experience</a>
-                    <a href="#contact" class="text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-contact-link">Contact</a>
-                    <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv" class="hidden xl:inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 hover:text-teal-700 transition">
-                        <i class="ph ph-download-simple"></i><span>CV</span>
+                <div class="hidden lg:flex items-center space-x-2">
+                    <a href="#about" class="px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-about">About</a>
+                    <a href="#services" class="px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-services">Services</a>
+                    <a href="#projects" class="px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-projects">Projects</a>
+                    <a href="#experience" class="px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-exp">Experience</a>
+                    <a href="#contact" class="px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition" id="nav-contact-link">Contact</a>
+                    <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv" class="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-3 text-sm font-medium text-slate-500 hover:text-teal-700 transition">
+                        <i aria-hidden="true" class="ph ph-download-simple"></i><span>CV</span>
                     </a>
 
                     <!-- Language Switcher -->
-                    <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
-                        <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
-                        <button onclick="setLanguage('fr')" id="btn-fr" class="px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
+                    <div role="group" aria-label="Language" class="lang-group flex items-center bg-slate-100 rounded-full p-0.5 border border-slate-200">
+                        <button type="button" onclick="setLanguage('en')" id="btn-en" lang="en" aria-label="English" aria-pressed="true" class="min-h-[44px] min-w-[44px] px-3 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
+                        <button type="button" onclick="setLanguage('fr')" id="btn-fr" lang="fr" aria-label="Français" aria-pressed="false" class="min-h-[44px] min-w-[44px] px-3 text-xs font-bold rounded-full transition-all text-slate-600 hover:text-slate-800">FR</button>
                     </div>
 
-                    <a href="#contact" class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" id="nav-contact">
+                    <a href="#contact" class="bg-teal-700 hover:bg-teal-800 text-white px-5 py-3 rounded-full text-sm font-medium transition shadow-lg hover:shadow-xl transform hover:-translate-y-0.5" id="nav-contact">
                         Contact Me
                     </a>
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <div class="flex lg:hidden items-center gap-2">
-                    <div class="flex items-center bg-slate-100 rounded-full p-1 border border-slate-200">
-                        <button onclick="setLanguage('en')" id="btn-en-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
-                        <button onclick="setLanguage('fr')" id="btn-fr-m" class="px-2.5 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700">FR</button>
+                <div class="flex lg:hidden items-center gap-1">
+                    <div role="group" aria-label="Language" class="lang-group flex items-center bg-slate-100 rounded-full p-0.5 border border-slate-200">
+                        <button type="button" onclick="setLanguage('en')" id="btn-en-m" lang="en" aria-label="English" aria-pressed="true" class="min-h-[44px] min-w-[44px] px-2 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm">EN</button>
+                        <button type="button" onclick="setLanguage('fr')" id="btn-fr-m" lang="fr" aria-label="Français" aria-pressed="false" class="min-h-[44px] min-w-[44px] px-2 text-xs font-bold rounded-full transition-all text-slate-600 hover:text-slate-800">FR</button>
                     </div>
-                    <button onclick="toggleMobileMenu()" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menu">
-                        <i class="ph ph-list text-2xl"></i>
+                    <button type="button" id="menu-btn" onclick="toggleMobileMenu()" class="p-2.5 rounded-lg text-slate-600 hover:bg-slate-100" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <i aria-hidden="true" class="ph ph-list text-2xl"></i>
                     </button>
                 </div>
             </div>
 
             <!-- Mobile Menu Panel -->
             <div id="mobile-menu" class="lg:hidden border-t border-slate-100 py-3 space-y-1">
-                <a href="#about" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-about-m">About</a>
-                <a href="#services" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-services-m">Services</a>
-                <a href="#projects" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-projects-m">Projects</a>
-                <a href="#experience" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-exp-m">Experience</a>
-                <a href="#contact" onclick="toggleMobileMenu()" class="block px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-contact-m">Contact</a>
-                <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv-m" onclick="toggleMobileMenu()" class="flex items-center gap-1.5 px-2 py-2 text-sm font-medium text-slate-600 hover:text-teal-700">
-                    <i class="ph ph-download-simple"></i><span>CV</span>
+                <a href="#about" onclick="toggleMobileMenu()" class="block px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-about-m">About</a>
+                <a href="#services" onclick="toggleMobileMenu()" class="block px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-services-m">Services</a>
+                <a href="#projects" onclick="toggleMobileMenu()" class="block px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-projects-m">Projects</a>
+                <a href="#experience" onclick="toggleMobileMenu()" class="block px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-exp-m">Experience</a>
+                <a href="#contact" onclick="toggleMobileMenu()" class="block px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700" id="nav-contact-m">Contact</a>
+                <a href="cv/Medico_Diomande_CV_EN.pdf" download id="nav-cv-m" onclick="toggleMobileMenu()" class="flex items-center gap-1.5 px-2 py-3 text-sm font-medium text-slate-600 hover:text-teal-700">
+                    <i aria-hidden="true" class="ph ph-download-simple"></i><span>CV</span>
                 </a>
             </div>
         </div>
@@ -128,13 +183,13 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div class="fade-in">
                 <!-- Badge -->
-                <span id="hero-badge" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 mb-6">
-                    🚀 Available for remote consulting missions
+                <span id="hero-badge" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-700 mb-6">
+                    <i aria-hidden="true" class="ph ph-rocket-launch"></i> Available for remote consulting missions
                 </span>
 
-                <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
+                <h1 id="hero-title" class="text-balance text-4xl sm:text-5xl lg:text-[3.25rem] font-extrabold text-slate-900 tracking-tight mb-6 leading-tight">
                     Energy Data Science & <br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">Infrastructure Intelligence.</span>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-emerald-600">Infrastructure Intelligence.</span>
                 </h1>
 
                 <p id="hero-desc" class="text-lg text-slate-600 mb-8 max-w-lg leading-relaxed">
@@ -143,14 +198,14 @@
 
                 <div class="flex flex-wrap gap-4">
                     <a href="#projects" id="hero-cta" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition shadow-lg flex items-center gap-2">
-                        View Projects <i class="ph ph-arrow-right"></i>
+                        View Projects <i aria-hidden="true" class="ph ph-arrow-right"></i>
                     </a>
                     <!-- CV download: href/label are set per language in renderLanguage() -->
                     <a href="cv/Medico_Diomande_CV_EN.pdf" download id="hero-cv" class="bg-teal-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-teal-800 transition shadow-lg flex items-center gap-2">
-                        <i class="ph ph-download-simple text-xl"></i> <span>Download CV</span>
+                        <i aria-hidden="true" class="ph ph-download-simple text-xl"></i> <span>Download CV</span>
                     </a>
                     <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="bg-white text-slate-700 border border-slate-300 px-6 py-3 rounded-lg font-semibold hover:bg-slate-50 transition flex items-center gap-2">
-                        <i class="ph ph-github-logo text-xl"></i> GitHub
+                        <i aria-hidden="true" class="ph ph-github-logo text-xl"></i> GitHub
                     </a>
                 </div>
             </div>
@@ -158,17 +213,27 @@
             <!-- Hero Viz (Radar Chart) -->
             <div class="relative lg:h-[400px] flex items-center justify-center bg-slate-50 rounded-2xl border border-slate-100 p-6 fade-in">
                 <div class="absolute top-4 left-4">
-                    <h3 class="text-sm font-bold text-slate-400 uppercase tracking-wider" id="chart-title">Skill Matrix</h3>
+                    <p class="text-sm font-bold text-slate-500 uppercase tracking-wider" id="chart-title">Skill Matrix</p>
                 </div>
                 <div class="chart-wrapper">
-                    <canvas id="heroChart"></canvas>
+                    <canvas id="heroChart" role="img" aria-label="Skill matrix radar chart"></canvas>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- MAIN CONTENT -->
-    <main class="flex-grow">
+    <main id="main" tabindex="-1" class="flex-grow focus:outline-none">
+        <noscript>
+            <div class="max-w-3xl mx-auto px-4 py-16 text-center text-slate-700">
+                <p class="mb-4 text-lg font-semibold">This site needs JavaScript to display its content.</p>
+                <p>Médico DIOMANDE — Energy Data Scientist &amp; Infrastructure Intelligence Specialist.<br>
+                <a class="text-teal-700 underline" href="mailto:dmedcos@yahoo.fr">dmedcos@yahoo.fr</a> ·
+                <a class="text-teal-700 underline" href="cv/Medico_Diomande_CV_EN.pdf">CV (EN)</a> ·
+                <a class="text-teal-700 underline" href="cv/Medico_Diomande_CV_FR.pdf">CV (FR)</a></p>
+            </div>
+        </noscript>
+
 
         <!-- SERVICES SECTION -->
         <section id="services" class="py-20 bg-slate-50 border-b border-slate-200">
@@ -183,7 +248,7 @@
                 </div>
 
                 <div class="mt-12 text-center">
-                    <p id="services-stack-label" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">Core Stack</p>
+                    <p id="services-stack-label" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4">Core Stack</p>
                     <div class="flex flex-wrap justify-center gap-2">
                         <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">Python</span>
                         <span class="px-3 py-1.5 bg-white border border-slate-200 text-slate-600 text-xs font-medium rounded-full">Scikit-learn</span>
@@ -224,7 +289,7 @@
                         </p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Interactive Portfolio</span>
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Interactive Portfolio</span>
                     </div>
                 </div>
 
@@ -235,15 +300,15 @@
                     </div>
 
                     <!-- Project Detail (Main View) -->
-                    <div class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full overflow-y-auto">
+                    <div id="project-detail" class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full overflow-y-auto">
 
                         <!-- Visual Banner -->
-                        <div id="detail-banner" class="rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br from-teal-600 to-teal-800">
+                        <div id="detail-banner" class="rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br from-teal-700 to-teal-900">
                             <div class="relative z-10">
-                                <span id="detail-tag" class="px-3 py-1 bg-white/15 text-white text-xs font-bold rounded-full uppercase mb-2 inline-block backdrop-blur-sm">Category</span>
+                                <span id="detail-tag" class="px-3 py-1 bg-black/20 text-white text-xs font-bold rounded-full uppercase mb-2 inline-block backdrop-blur-sm">Category</span>
                                 <h3 id="detail-title" class="text-2xl font-bold text-white">Project Title</h3>
                             </div>
-                            <i id="detail-icon" class="ph ph-gauge text-white/20 text-[7rem] absolute -right-2 -bottom-4"></i>
+                            <i id="detail-icon" aria-hidden="true" class="ph ph-gauge text-white/20 text-[7rem] absolute -right-2 -bottom-4"></i>
                         </div>
 
                         <div class="p-8 flex flex-col flex-grow">
@@ -253,16 +318,16 @@
                             <!-- Detail Content Grid -->
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                                 <div>
-                                    <h4 id="lbl-objective" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">The Challenge</h4>
+                                    <h4 id="lbl-objective" class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">The Challenge</h4>
                                     <p id="detail-obj" class="text-sm text-slate-700 leading-relaxed mb-6">Description...</p>
 
-                                    <h4 id="lbl-stack" class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Tech Stack</h4>
+                                    <h4 id="lbl-stack" class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Tech Stack</h4>
                                     <div id="detail-stack" class="flex flex-wrap gap-2"></div>
                                 </div>
 
                                 <!-- Stat Tiles -->
                                 <div class="bg-slate-50 rounded-lg border border-slate-100 p-5 flex flex-col">
-                                    <h4 id="lbl-results" class="text-xs font-bold text-teal-600 uppercase tracking-wider mb-4">Key Results</h4>
+                                    <h4 id="lbl-results" class="text-xs font-bold text-teal-700 uppercase tracking-wider mb-4">Key Results</h4>
                                     <div id="detail-stats" class="grid grid-cols-1 gap-4 flex-grow content-center"></div>
                                 </div>
                             </div>
@@ -290,7 +355,7 @@
                 </div>
 
                 <div class="mt-14 border-t border-slate-100 pt-10">
-                    <p id="certs-label" class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4 text-center">Certifications</p>
+                    <p id="certs-label" class="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-4 text-center">Certifications</p>
                     <div class="flex flex-wrap justify-center gap-3" id="certs-grid">
                         <!-- Injected via JS -->
                     </div>
@@ -324,38 +389,39 @@
                     <form id="contact-form" class="lg:col-span-3 bg-slate-50 rounded-2xl border border-slate-200 p-8 space-y-5">
                         <div>
                             <label id="lbl-name" for="cf-name" class="block text-sm font-semibold text-slate-700 mb-1.5">Name</label>
-                            <input id="cf-name" name="name" type="text" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+                            <input id="cf-name" name="name" type="text" autocomplete="name" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-base">
                         </div>
                         <div>
                             <label id="lbl-email" for="cf-email" class="block text-sm font-semibold text-slate-700 mb-1.5">Email</label>
-                            <input id="cf-email" name="email" type="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm">
+                            <input id="cf-email" name="email" type="email" autocomplete="email" inputmode="email" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-base">
                         </div>
                         <div>
                             <label id="lbl-message" for="cf-message" class="block text-sm font-semibold text-slate-700 mb-1.5">Message</label>
-                            <textarea id="cf-message" name="message" rows="5" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-500 text-sm"></textarea>
+                            <textarea id="cf-message" name="message" rows="5" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-teal-700 text-base"></textarea>
                         </div>
-                        <button type="submit" id="cf-submit" class="w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md flex items-center justify-center gap-2">
-                            <i class="ph ph-paper-plane-tilt"></i> <span>Send Message</span>
+                        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden" aria-hidden="true">
+                        <button type="submit" id="cf-submit" class="disabled:opacity-60 disabled:cursor-not-allowed w-full bg-teal-700 hover:bg-teal-800 text-white px-6 py-3 rounded-lg font-semibold transition shadow-md flex items-center justify-center gap-2">
+                            <i aria-hidden="true" class="ph ph-paper-plane-tilt"></i> <span>Send Message</span>
                         </button>
-                        <p id="cf-status" class="text-sm text-center pt-1"></p>
+                        <p id="cf-status" role="status" aria-live="polite" class="text-sm text-center pt-1"></p>
                     </form>
 
                     <!-- Calendly / Direct Contact -->
                     <div class="lg:col-span-2 flex flex-col gap-6">
                         <div class="bg-slate-900 rounded-2xl p-8 text-white flex-grow flex flex-col justify-center">
-                            <i class="ph ph-calendar-check text-4xl text-teal-400 mb-4"></i>
+                            <i aria-hidden="true" class="ph ph-calendar-check text-4xl text-teal-400 mb-4"></i>
                             <h3 id="calendly-title" class="text-lg font-bold mb-2">Prefer to talk directly?</h3>
                             <p id="calendly-desc" class="text-sm text-slate-300 mb-6 leading-relaxed">Book a 30-minute call to discuss your project.</p>
-                            <button onclick="handleBookCall()" id="calendly-btn" class="bg-teal-600 hover:bg-teal-500 text-white px-5 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm">
-                                <i class="ph ph-video-camera"></i> <span>Book a Call</span>
+                            <button type="button" onclick="handleBookCall()" id="calendly-btn" class="bg-teal-700 hover:bg-teal-600 text-white px-5 py-3 rounded-lg font-semibold transition flex items-center justify-center gap-2 text-sm">
+                                <i aria-hidden="true" class="ph ph-video-camera"></i> <span>Book a Call</span>
                             </button>
                         </div>
                         <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 space-y-3">
-                            <a href="mailto:dmedcos@yahoo.fr" class="flex items-center gap-3 text-sm text-slate-600 hover:text-teal-700 transition">
-                                <i class="ph ph-envelope-simple text-lg"></i> dmedcos@yahoo.fr
+                            <a href="mailto:dmedcos@yahoo.fr" class="flex items-center gap-3 min-h-[44px] text-sm text-slate-600 hover:text-teal-700 transition">
+                                <i aria-hidden="true" class="ph ph-envelope-simple text-lg"></i> dmedcos@yahoo.fr
                             </a>
-                            <a href="https://linkedin.com/in/medico-diomande-data" target="_blank" rel="noopener" class="flex items-center gap-3 text-sm text-slate-600 hover:text-teal-700 transition">
-                                <i class="ph ph-linkedin-logo text-lg"></i> linkedin.com/in/medico-diomande-data
+                            <a href="https://linkedin.com/in/medico-diomande-data" target="_blank" rel="noopener" class="flex items-center gap-3 min-h-[44px] text-sm text-slate-600 hover:text-teal-700 transition">
+                                <i aria-hidden="true" class="ph ph-linkedin-logo text-lg"></i> linkedin.com/in/medico-diomande-data
                             </a>
                         </div>
                     </div>
@@ -370,20 +436,20 @@
         <div class="max-w-7xl mx-auto px-4 text-center">
             <h2 id="footer-title" class="text-2xl font-bold text-white mb-6">Ready to collaborate?</h2>
             <div class="flex flex-wrap justify-center gap-6 mb-8">
-                <a href="mailto:dmedcos@yahoo.fr" class="hover:text-teal-400 transition flex items-center gap-2">
-                    <i class="ph ph-envelope-simple text-xl"></i> dmedcos@yahoo.fr
+                <a href="mailto:dmedcos@yahoo.fr" class="hover:text-teal-400 transition flex items-center gap-2 min-h-[44px]">
+                    <i aria-hidden="true" class="ph ph-envelope-simple text-xl"></i> dmedcos@yahoo.fr
                 </a>
-                <a href="tel:+2250708276664" class="hover:text-teal-400 transition flex items-center gap-2">
-                    <i class="ph ph-phone text-xl"></i> +225 07 08 27 66 64
+                <a href="tel:+2250708276664" class="hover:text-teal-400 transition flex items-center gap-2 min-h-[44px]">
+                    <i aria-hidden="true" class="ph ph-phone text-xl"></i> +225 07 08 27 66 64
                 </a>
-                <a href="https://linkedin.com/in/medico-diomande-data" class="hover:text-teal-400 transition flex items-center gap-2">
-                    <i class="ph ph-linkedin-logo text-xl"></i> LinkedIn
+                <a href="https://linkedin.com/in/medico-diomande-data" class="hover:text-teal-400 transition flex items-center gap-2 min-h-[44px]">
+                    <i aria-hidden="true" class="ph ph-linkedin-logo text-xl"></i> LinkedIn
                 </a>
-                <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="hover:text-teal-400 transition flex items-center gap-2">
-                    <i class="ph ph-github-logo text-xl"></i> GitHub
+                <a href="https://github.com/medcos/energy-data-scientist" target="_blank" rel="noopener" class="hover:text-teal-400 transition flex items-center gap-2 min-h-[44px]">
+                    <i aria-hidden="true" class="ph ph-github-logo text-xl"></i> GitHub
                 </a>
             </div>
-            <p class="text-sm text-slate-500">
+            <p class="text-sm text-slate-400">
                 &copy; 2026 Médico DIOMANDE. <span id="footer-rights">All rights reserved.</span>
             </p>
         </div>
@@ -407,16 +473,17 @@
         // --- DATA STORE (BILINGUAL) ---
         const content = {
             en: {
-                nav: { role: "Energy Data Scientist", about: "About", services: "Services", projects: "Projects", exp: "Experience", contact: "Contact", cv: "CV", contactBtn: "Contact Me" },
+                nav: { role: "Energy Data Scientist", about: "About", services: "Services", projects: "Projects", exp: "Experience", contact: "Contact", cv: "CV", contactBtn: "Contact Me", skip: "Skip to main content", aria: "Main navigation", menu: "Menu", lang: "Language", pdfNote: "" },
                 hero: {
-                    badge: "🚀 Available for remote consulting missions",
+                    badge: "Available for remote consulting missions",
                     title_start: "Energy Data Science &",
                     title_end: "Infrastructure Intelligence.",
                     desc: "10+ years running World Bank, AFD and AfDB-funded electrification worksites, now applying machine learning and agentic AI automation to the same physical infrastructure problems — predictive maintenance, rollout forecasting, and field-operations intelligence.",
                     cta: "View Projects",
                     cv: "Download CV",
                     chart_title: "Skill Matrix",
-                    radar_labels: ['Field Engineering', 'Python / ML', 'Agentic AI', 'Leadership', 'Interpretability', 'Automation']
+                    radar_labels: ['Field Engineering', 'Python / ML', 'Agentic AI', 'Leadership', 'Interpretability', 'Automation'],
+                    chart_alt: 'Radar chart of self-assessed skills, scored out of 100'
                 },
                 services: {
                     title: "Services", sub: "Three ways to work together, from a short diagnostic to ongoing automation support.",
@@ -458,7 +525,7 @@
                 ],
                 projects_data: [
                     {
-                        id: 'maintenance', title: 'Predictive Maintenance for Industrial Machines', tag: 'Energy · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
+                        id: 'maintenance', title: 'Predictive Maintenance for Industrial Machines', tag: 'Energy · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-700 to-teal-900',
                         obj: 'A two-level classification system predicting whether an industrial machine will fail and, if so, which of three failure modes (heat dissipation, power, overstrain) is the root cause — so maintenance teams act on the right fix instead of guessing. Built on a public benchmark dataset.',
                         actions: ['Gradient Boosting tuned for the business trade-off between recall and precision, not raw accuracy.', 'SHAP interpretability on every prediction — each failure mode has its own physical signature.', 'Deployed as a 3-page Streamlit dashboard the maintenance team can query directly.'],
                         stats: [ {value:'0.98', label:'AUC-ROC, failure prediction'}, {value:'0.94–1.00', label:'F1-score per root-cause mode'}, {value:'3', label:'failure modes predicted, with per-mode thresholds'} ],
@@ -466,7 +533,7 @@
                         demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
-                        id: 'forecast', title: 'Predictive Rollout & Supply Forecast', tag: 'Infrastructure · Forecasting', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
+                        id: 'forecast', title: 'Predictive Rollout & Supply Forecast', tag: 'Infrastructure · Forecasting', icon: 'ph-chart-line-up', banner: 'from-amber-700 to-amber-900',
                         obj: 'A 3-model suite forecasting material needs, construction progress, and delay risk across a multi-site rural electrification rollout — turning weekly field reports into forward-looking planning signals.',
                         actions: ['Baseline-first discipline: a more complex model was kept in only 1 of 4 comparable cases, when the evidence justified it.', 'Delay-risk classifier flags at-risk worksites with 93% detection.', 'Material-forecast error runs roughly 2–3× lower than a no-model baseline.'],
                         stats: [ {value:'93%', label:'delay-risk detection rate'}, {value:'3', label:'ML modules — resources, progress, risk'}, {value:'55', label:'localities across 4 departments'} ],
@@ -474,7 +541,7 @@
                         demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
                     },
                     {
-                        id: 'agent', title: 'Jobsite Relaunch Agent', tag: 'Agentic AI · Automation', icon: 'ph-robot', banner: 'from-indigo-500 to-indigo-700',
+                        id: 'agent', title: 'Jobsite Relaunch Agent', tag: 'Agentic AI · Automation', icon: 'ph-robot', banner: 'from-indigo-600 to-indigo-800',
                         obj: 'A LangGraph + n8n agent that reads weekly field reports, resolves locality names across inconsistent spellings, and automatically classifies stalled worksites — replacing a manual weekly triage.',
                         actions: ['9-node stateful LangGraph agent with SqliteSaver checkpointing — history persists week over week.', 'n8n workflow orchestrates the agent behind a FastAPI wrapper, validated end-to-end.', 'Public Streamlit demo simulates several weeks of jobsite history on synthetic data.'],
                         stats: [ {value:'9', label:'LangGraph nodes'}, {value:'6', label:'n8n workflow steps'}, {value:'100%', label:'synthetic demo data — no client data exposed'} ],
@@ -492,16 +559,17 @@
                 ]
             },
             fr: {
-                nav: { role: "Data Scientist Énergie", about: "À propos", services: "Services", projects: "Projets", exp: "Parcours", contact: "Contact", cv: "CV", contactBtn: "Me Contacter" },
+                nav: { role: "Data Scientist Énergie", about: "À propos", services: "Services", projects: "Projets", exp: "Parcours", contact: "Contact", cv: "CV", contactBtn: "Me Contacter", skip: "Aller au contenu principal", aria: "Navigation principale", menu: "Menu", lang: "Langue", pdfNote: "" },
                 hero: {
-                    badge: "🚀 Disponible pour des missions de conseil à distance",
+                    badge: "Disponible pour des missions de conseil à distance",
                     title_start: "Data Science Énergie &",
                     title_end: "Intelligence des Infrastructures.",
                     desc: "10+ ans à piloter des chantiers d'électrification financés par la Banque Mondiale, l'AFD et la BAD, désormais mis au service du Machine Learning et de l'automatisation par IA agentique sur ces mêmes problématiques terrain : maintenance prédictive, prévision d'exécution et intelligence des opérations de chantier.",
                     cta: "Voir mes projets",
                     cv: "Télécharger le CV",
                     chart_title: "Matrice de Compétences",
-                    radar_labels: ['Ingénierie Terrain', 'Python / ML', 'IA Agentique', 'Leadership', 'Interprétabilité', 'Automatisation']
+                    radar_labels: ['Ingénierie Terrain', 'Python / ML', 'IA Agentique', 'Leadership', 'Interprétabilité', 'Automatisation'],
+                    chart_alt: 'Graphique radar des compétences (auto-évaluation sur 100)'
                 },
                 services: {
                     title: "Services", sub: "Trois formats de collaboration, du diagnostic court à l'accompagnement continu.",
@@ -543,7 +611,7 @@
                 ],
                 projects_data: [
                     {
-                        id: 'maintenance', title: 'Maintenance Prédictive Industrielle', tag: 'Énergie · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-600 to-teal-800',
+                        id: 'maintenance', title: 'Maintenance Prédictive Industrielle', tag: 'Énergie · Machine Learning', icon: 'ph-gauge', banner: 'from-teal-700 to-teal-900',
                         obj: "Un système de classification à deux niveaux qui prédit si une machine industrielle va tomber en panne et, le cas échéant, lequel de trois modes de panne (surchauffe, puissance, surcontrainte) en est la cause racine — pour que les équipes de maintenance corrigent le bon problème au lieu de deviner. Construit sur un jeu de données public de référence.",
                         actions: ["Gradient Boosting calibré sur le compromis rappel/précision pertinent pour le métier, pas sur la seule exactitude.", "Interprétabilité SHAP sur chaque prédiction — chaque mode de panne a sa propre signature physique.", "Déployé sous forme de dashboard Streamlit à 3 pages, consultable directement par l'équipe maintenance."],
                         stats: [ {value:'0,98', label:'AUC-ROC, prédiction de panne'}, {value:'0,94–1,00', label:'F1-score par mode de panne'}, {value:'3', label:'modes de panne prédits, avec seuils propres à chaque mode'} ],
@@ -551,7 +619,7 @@
                         demoUrl: 'https://maintenance-predictive-medico.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-maintenance-electrical-grid'
                     },
                     {
-                        id: 'forecast', title: "Prévision d'Exécution & Approvisionnement", tag: 'Infrastructure · Prévision', icon: 'ph-chart-line-up', banner: 'from-amber-500 to-amber-700',
+                        id: 'forecast', title: "Prévision d'Exécution & Approvisionnement", tag: 'Infrastructure · Prévision', icon: 'ph-chart-line-up', banner: 'from-amber-700 to-amber-900',
                         obj: "Une suite de 3 modèles prévoyant les besoins matériels, l'avancement des travaux et le risque de retard sur un déploiement d'électrification rurale multi-sites — transformant les rapports de terrain hebdomadaires en signaux de planification prédictifs.",
                         actions: ["Discipline « baseline d'abord » : un modèle plus complexe n'a été retenu que dans 1 cas comparable sur 4, quand les résultats le justifiaient.", "Le classificateur de risque de retard détecte 93% des chantiers à risque.", "Erreur de prévision des besoins matériels environ 2 à 3× plus faible qu'une référence sans modèle."],
                         stats: [ {value:'93%', label:'taux de détection du risque de retard'}, {value:'3', label:'modules ML — ressources, avancement, risque'}, {value:'55', label:'localités sur 4 départements'} ],
@@ -559,7 +627,7 @@
                         demoUrl: 'https://energy-data-scientist-mdz2vr9ozqxhey3t5nprkh.streamlit.app/', codeUrl: 'https://github.com/medcos/energy-data-scientist/tree/main/predictive-avancement-projet'
                     },
                     {
-                        id: 'agent', title: 'Agent IA de Relance de Chantier', tag: 'IA Agentique · Automatisation', icon: 'ph-robot', banner: 'from-indigo-500 to-indigo-700',
+                        id: 'agent', title: 'Agent IA de Relance de Chantier', tag: 'IA Agentique · Automatisation', icon: 'ph-robot', banner: 'from-indigo-600 to-indigo-800',
                         obj: "Un agent LangGraph + n8n qui lit les rapports de terrain hebdomadaires, résout les noms de localités malgré les variantes orthographiques, et classe automatiquement les chantiers à l'arrêt — remplaçant un tri manuel hebdomadaire.",
                         actions: ["Agent LangGraph à état à 9 nœuds, avec checkpointing SqliteSaver — l'historique persiste semaine après semaine.", "Le workflow n8n orchestre l'agent derrière une API FastAPI, validé de bout en bout.", "Démo Streamlit publique simulant plusieurs semaines d'historique de chantier sur données synthétiques."],
                         stats: [ {value:'9', label:'nœuds LangGraph'}, {value:'6', label:'étapes du workflow n8n'}, {value:'100%', label:'données de démo synthétiques — aucune donnée client exposée'} ],
@@ -580,7 +648,10 @@
 
         // --- STATE ---
         let currentLang = 'en';
+        let currentProject = 0; // keep the selected project when switching language
         let charts = {}; // Store chart instances
+        const RADAR_DATA = [95, 85, 85, 90, 88, 82];
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         const skillColorMap = {
             blue: { bg: 'bg-blue-50', text: 'text-blue-600' },
@@ -604,23 +675,37 @@
 
         // --- FUNCTIONS ---
 
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('open');
+        function toggleMobileMenu(forceClose) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('menu-btn');
+            const open = forceClose === true ? (menu.classList.remove('open'), false) : menu.classList.toggle('open');
+            btn.setAttribute('aria-expanded', String(open));
         }
+
+        // Escape closes the mobile menu and returns focus to its button
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('mobile-menu').classList.contains('open')) {
+                toggleMobileMenu(true);
+                document.getElementById('menu-btn').focus();
+            }
+        });
 
         function setLanguage(lang) {
             currentLang = lang;
 
             // Toggle Buttons (desktop + mobile)
-            const active = "px-3 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
-            const inactive = "px-3 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
-            const activeM = "px-2.5 py-1 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
-            const inactiveM = "px-2.5 py-1 text-xs font-bold rounded-full transition-all text-slate-500 hover:text-slate-700";
+            const active = "min-h-[44px] min-w-[44px] px-3 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+            const inactive = "min-h-[44px] min-w-[44px] px-3 text-xs font-bold rounded-full transition-all text-slate-600 hover:text-slate-800";
+            const activeM = "min-h-[44px] min-w-[44px] px-2 text-xs font-bold rounded-full transition-all bg-white text-teal-700 shadow-sm";
+            const inactiveM = "min-h-[44px] min-w-[44px] px-2 text-xs font-bold rounded-full transition-all text-slate-600 hover:text-slate-800";
 
-            document.getElementById('btn-en').className = lang === 'en' ? active : inactive;
-            document.getElementById('btn-fr').className = lang === 'fr' ? active : inactive;
-            document.getElementById('btn-en-m').className = lang === 'en' ? activeM : inactiveM;
-            document.getElementById('btn-fr-m').className = lang === 'fr' ? activeM : inactiveM;
+            [['btn-en', 'en', active, inactive], ['btn-fr', 'fr', active, inactive],
+             ['btn-en-m', 'en', activeM, inactiveM], ['btn-fr-m', 'fr', activeM, inactiveM]].forEach(([id, code, on, off]) => {
+                const b = document.getElementById(id);
+                b.className = lang === code ? on : off;
+                b.setAttribute('aria-pressed', String(lang === code));
+            });
+            document.documentElement.lang = lang;
 
             // Re-render everything
             renderLanguage();
@@ -631,11 +716,19 @@
             renderTimeline();
             renderCerts();
             renderTestimonials();
-            loadProject(0);
+            loadProject(currentProject);
         }
 
         function renderLanguage() {
             const t = content[currentLang];
+
+            // Accessibility labels follow the language
+            document.getElementById('skip-link').textContent = t.nav.skip;
+            document.getElementById('main-nav').setAttribute('aria-label', t.nav.aria);
+            document.getElementById('menu-btn').setAttribute('aria-label', t.nav.menu);
+            document.querySelectorAll('.lang-group').forEach(g => g.setAttribute('aria-label', t.nav.lang));
+            document.getElementById('heroChart').setAttribute('aria-label',
+                t.hero.chart_alt + ': ' + t.hero.radar_labels.map((l, i) => `${l} ${RADAR_DATA[i]}`).join(', '));
 
             // Nav
             document.getElementById('nav-role').textContent = t.nav.role;
@@ -652,10 +745,10 @@
             document.getElementById('nav-contact-m').textContent = t.nav.contact;
 
             // Hero
-            document.getElementById('hero-badge').textContent = t.hero.badge;
-            document.getElementById('hero-title').innerHTML = `${t.hero.title_start} <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">${t.hero.title_end}</span>`;
+            document.getElementById('hero-badge').innerHTML = `<i aria-hidden="true" class="ph ph-rocket-launch"></i> ${t.hero.badge}`;
+            document.getElementById('hero-title').innerHTML = `${t.hero.title_start} <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-700 to-emerald-600">${t.hero.title_end}</span>`;
             document.getElementById('hero-desc').textContent = t.hero.desc;
-            document.getElementById('hero-cta').innerHTML = `${t.hero.cta} <i class="ph ph-arrow-right"></i>`;
+            document.getElementById('hero-cta').innerHTML = `${t.hero.cta} <i aria-hidden="true" class="ph ph-arrow-right"></i>`;
             document.getElementById('chart-title').textContent = t.hero.chart_title;
 
             // CV download (label + PDF follow the selected language)
@@ -712,12 +805,12 @@
                 div.className = "bg-white p-7 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition";
                 div.innerHTML = `
                     <div class="w-12 h-12 bg-teal-50 text-teal-600 rounded-full flex items-center justify-center mb-5">
-                        <i class="ph ${c.icon} text-2xl"></i>
+                        <i aria-hidden="true" class="ph ${c.icon} text-2xl"></i>
                     </div>
                     <div class="flex items-center gap-2 mb-2">
                         <h3 class="font-bold text-slate-900">${c.title}</h3>
                     </div>
-                    <span class="inline-block text-[11px] font-semibold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full mb-3">${c.duration}</span>
+                    <span class="inline-block text-xs font-semibold text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full mb-3">${c.duration}</span>
                     <p class="text-sm text-slate-500 leading-relaxed">${c.desc}</p>
                 `;
                 grid.appendChild(div);
@@ -733,7 +826,7 @@
                 div.className = "bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition text-center group";
                 div.innerHTML = `
                     <div class="w-12 h-12 ${colors.bg} ${colors.text} rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition">
-                        <i class="ph ${c.icon} text-2xl"></i>
+                        <i aria-hidden="true" class="ph ${c.icon} text-2xl"></i>
                     </div>
                     <h3 class="font-bold text-slate-900">${c.title}</h3>
                     <p class="text-xs text-slate-500 mt-1">${c.desc}</p>
@@ -748,19 +841,22 @@
             const data = content[currentLang].projects_data;
 
             data.forEach((p, index) => {
-                const card = document.createElement('div');
-                card.className = `project-card p-4 rounded-lg bg-white border border-slate-100 cursor-pointer hover:shadow-md transition group`;
-                card.onclick = () => loadProject(index);
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `project-card block w-full text-left p-4 rounded-lg bg-white border border-slate-100 cursor-pointer hover:shadow-md transition group`;
+                card.addEventListener('click', () => loadProject(index));
                 card.id = `card-${index}`;
+                card.setAttribute('aria-controls', 'project-detail');
+                card.setAttribute('aria-pressed', 'false');
                 card.innerHTML = `
-                    <div class="flex justify-between items-center mb-1">
-                        <div class="flex items-center gap-2">
-                            <i class="ph ${p.icon} text-teal-600"></i>
-                            <h4 class="font-bold text-slate-800 group-hover:text-teal-700 transition">${p.title}</h4>
-                        </div>
-                        <i class="ph ph-caret-right text-slate-300"></i>
-                    </div>
-                    <p class="text-xs text-slate-500 font-medium pl-6">${p.tag}</p>
+                    <span class="flex justify-between items-center mb-1">
+                        <span class="flex items-center gap-2">
+                            <i aria-hidden="true" class="ph ${p.icon} text-teal-600"></i>
+                            <span class="font-bold text-slate-800 group-hover:text-teal-700 transition">${p.title}</span>
+                        </span>
+                        <i aria-hidden="true" class="ph ph-caret-right text-slate-300"></i>
+                    </span>
+                    <span class="block text-xs text-slate-500 font-medium pl-6">${p.tag}</span>
                 `;
                 list.appendChild(card);
             });
@@ -769,16 +865,24 @@
         function loadProject(index) {
             const data = content[currentLang].projects_data[index];
             const t = content[currentLang].projects;
+            currentProject = index;
 
             // Active State
-            document.querySelectorAll('.project-card').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.project-card').forEach(c => {
+                c.classList.remove('active');
+                c.setAttribute('aria-pressed', 'false');
+            });
             const activeCard = document.getElementById(`card-${index}`);
-            if (activeCard) activeCard.classList.add('active');
+            if (activeCard) {
+                activeCard.classList.add('active');
+                activeCard.setAttribute('aria-pressed', 'true');
+            }
 
             // Banner
             const banner = document.getElementById('detail-banner');
             banner.className = `rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br ${data.banner}`;
             document.getElementById('detail-icon').className = `ph ${data.icon} text-white/20 text-[7rem] absolute -right-2 -bottom-4`;
+            document.getElementById('detail-icon').setAttribute('aria-hidden', 'true');
 
             // Populate Details
             document.getElementById('detail-tag').textContent = data.tag;
@@ -820,12 +924,12 @@
             const linksContainer = document.getElementById('detail-links');
             linksContainer.innerHTML = '';
             if (data.demoUrl) {
-                linksContainer.innerHTML += `<a href="${data.demoUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold rounded-lg transition"><i class="ph ph-arrow-square-out"></i> ${t.demo}</a>`;
+                linksContainer.innerHTML += `<a href="${data.demoUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 min-h-[44px] bg-teal-700 hover:bg-teal-800 text-white text-xs font-bold rounded-lg transition"><i aria-hidden="true" class="ph ph-arrow-square-out"></i> ${t.demo}</a>`;
             } else {
-                linksContainer.innerHTML += `<span class="inline-flex items-center gap-1.5 px-4 py-2 bg-slate-100 text-slate-500 text-xs font-bold rounded-lg"><i class="ph ph-check-circle"></i> ${t.production}</span>`;
+                linksContainer.innerHTML += `<span class="inline-flex items-center gap-1.5 px-4 min-h-[44px] bg-slate-100 text-slate-500 text-xs font-bold rounded-lg"><i aria-hidden="true" class="ph ph-check-circle"></i> ${t.production}</span>`;
             }
             if (data.codeUrl) {
-                linksContainer.innerHTML += `<a href="${data.codeUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-lg transition"><i class="ph ph-github-logo"></i> ${t.code}</a>`;
+                linksContainer.innerHTML += `<a href="${data.codeUrl}" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 px-4 min-h-[44px] bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-xs font-bold rounded-lg transition"><i aria-hidden="true" class="ph ph-github-logo"></i> ${t.code}</a>`;
             }
         }
 
@@ -838,7 +942,7 @@
                 const div = document.createElement('div');
                 div.className = "relative pl-8 pb-8 fade-in";
                 div.innerHTML = `
-                    <span class="absolute -left-[9px] top-0 h-5 w-5 rounded-full bg-white border-4 border-teal-600"></span>
+                    <span aria-hidden="true" class="absolute -left-[9px] top-0 h-5 w-5 rounded-full bg-white border-4 border-teal-600"></span>
                     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
                         <h3 class="text-lg font-bold text-slate-900">${item.role}</h3>
                         <span class="text-sm font-semibold text-teal-700 bg-teal-50 px-2 py-1 rounded border border-teal-100">${item.date}</span>
@@ -856,7 +960,7 @@
             content[currentLang].certs.items.forEach(c => {
                 const span = document.createElement('span');
                 span.className = "inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-full text-xs font-medium text-slate-600 shadow-sm";
-                span.innerHTML = `<i class="ph ph-medal text-teal-600"></i> ${c}`;
+                span.innerHTML = `<i aria-hidden="true" class="ph ph-medal text-teal-600"></i> ${c}`;
                 container.appendChild(span);
             });
         }
@@ -869,9 +973,9 @@
                 const div = document.createElement('div');
                 div.className = "testimonial-placeholder rounded-xl p-7 bg-white/50 flex flex-col items-center justify-center text-center min-h-[180px]";
                 div.innerHTML = `
-                    <i class="ph ph-quotes text-3xl text-slate-300 mb-3"></i>
-                    <h4 class="text-sm font-bold text-slate-400">${t.placeholder_title}</h4>
-                    <p class="text-xs text-slate-400 mt-1 max-w-[220px]">${t.placeholder_desc}</p>
+                    <i aria-hidden="true" class="ph ph-quotes text-3xl text-slate-300 mb-3"></i>
+                    <h4 class="text-sm font-bold text-slate-500">${t.placeholder_title}</h4>
+                    <p class="text-xs text-slate-500 mt-1 max-w-[220px]">${t.placeholder_desc}</p>
                 `;
                 container.appendChild(div);
             }
@@ -898,9 +1002,11 @@
             const email = document.getElementById('cf-email').value;
             const message = document.getElementById('cf-message').value;
 
+            const submitBtn = document.getElementById('cf-submit');
             if (CONTACT_CONFIG.formspreeEndpoint) {
                 statusEl.className = "text-sm text-center pt-1 text-slate-500";
                 statusEl.textContent = t.status_sending;
+                submitBtn.disabled = true;
                 try {
                     const res = await fetch(CONTACT_CONFIG.formspreeEndpoint, {
                         method: 'POST',
@@ -915,8 +1021,10 @@
                         throw new Error('Form submission failed');
                     }
                 } catch (err) {
-                    statusEl.className = "text-sm text-center pt-1 text-red-600 font-medium";
+                    statusEl.className = "text-sm text-center pt-1 text-red-700 font-medium";
                     statusEl.textContent = t.status_error;
+                } finally {
+                    submitBtn.disabled = false;
                 }
             } else {
                 // Fallback: open a pre-filled mailto link until Formspree is configured
@@ -940,7 +1048,7 @@
                     labels: content[currentLang].hero.radar_labels,
                     datasets: [{
                         label: content[currentLang].hero.chart_title,
-                        data: [95, 85, 85, 90, 88, 82],
+                        data: RADAR_DATA,
                         fill: true,
                         backgroundColor: 'rgba(20, 184, 166, 0.2)', // Teal-500
                         borderColor: '#0d9488', // Teal-600
@@ -953,6 +1061,7 @@
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
+                    animation: prefersReducedMotion ? false : undefined,
                     scales: {
                         r: {
                             min: 0,
@@ -961,7 +1070,7 @@
                             grid: { color: '#e2e8f0' },
                             pointLabels: {
                                 font: { size: 12, family: 'Inter', weight: '600' },
-                                color: '#64748b'
+                                color: '#475569'
                             },
                             ticks: { display: false }
                         }
