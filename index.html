@@ -289,21 +289,21 @@
                         </p>
                     </div>
                     <div class="mt-4 md:mt-0">
-                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Interactive Portfolio</span>
+                        <span id="projects-badge" class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Interactive Portfolio</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 h-auto lg:h-[680px]">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     <!-- Project List (Sidebar) -->
-                    <div class="lg:col-span-4 flex flex-col gap-4 overflow-y-auto custom-scroll pr-2" id="project-list-container">
+                    <div class="lg:col-span-4 flex flex-col gap-4 lg:sticky lg:top-24" id="project-list-container">
                         <!-- Injected via JS -->
                     </div>
 
                     <!-- Project Detail (Main View) -->
-                    <div id="project-detail" class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col h-full overflow-y-auto">
+                    <div id="project-detail" class="lg:col-span-8 bg-white rounded-2xl border border-slate-200 shadow-sm flex flex-col">
 
                         <!-- Visual Banner -->
-                        <div id="detail-banner" class="rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br from-teal-700 to-teal-900">
+                        <div id="detail-banner" class="shrink-0 rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br from-teal-700 to-teal-900">
                             <div class="relative z-10">
                                 <span id="detail-tag" class="px-3 py-1 bg-black/20 text-white text-xs font-bold rounded-full uppercase mb-2 inline-block backdrop-blur-sm">Category</span>
                                 <h3 id="detail-title" class="text-2xl font-bold text-white">Project Title</h3>
@@ -503,7 +503,7 @@
                         { icon: 'ph-layout', color: 'teal', title: 'No-Code / Low-Code', desc: 'AppSheet, Apps Script, Streamlit' }
                     ]
                 },
-                projects: { title: "Flagship Projects", sub: "Real, publicly deployed systems inspired by donor-financed electrification programs in West Africa — data anonymized throughout.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Key Results", lbl_act: "Approach & Impact", demo: "Live Demo", code: "View Code", production: "In Production" },
+                projects: { badge: "Interactive Portfolio", title: "Flagship Projects", sub: "Real, publicly deployed systems inspired by donor-financed electrification programs in West Africa — data anonymized throughout.", lbl_obj: "The Challenge", lbl_stack: "Tech Stack", lbl_res: "Key Results", lbl_act: "Approach & Impact", demo: "Live Demo", code: "View Code", production: "In Production" },
                 exp: { title: "Professional Journey" },
                 certs: { label: "Certifications", items: ["RNCP Level 7 Data Scientist — CentraleSupélec / OpenClassrooms", "Building AI Agents and Agentic Workflows — IBM"] },
                 testimonials: {
@@ -589,7 +589,7 @@
                         { icon: 'ph-layout', color: 'teal', title: 'No-Code / Low-Code', desc: 'AppSheet, Apps Script, Streamlit' }
                     ]
                 },
-                projects: { title: "Projets Phares", sub: "Des systèmes réels, déployés publiquement — inspirés de programmes d'électrification financés par des bailleurs internationaux en Afrique de l'Ouest, avec des données anonymisées.", lbl_obj: "Le Défi", lbl_stack: "Technologies", lbl_res: "Résultats Clés", lbl_act: "Approche & Impact", demo: "Démo en Ligne", code: "Voir le Code", production: "En Production" },
+                projects: { badge: "Portfolio interactif", title: "Projets Phares", sub: "Des systèmes réels, déployés publiquement — inspirés de programmes d'électrification financés par des bailleurs internationaux en Afrique de l'Ouest, avec des données anonymisées.", lbl_obj: "Le Défi", lbl_stack: "Technologies", lbl_res: "Résultats Clés", lbl_act: "Approche & Impact", demo: "Démo en Ligne", code: "Voir le Code", production: "En Production" },
                 exp: { title: "Parcours Professionnel" },
                 certs: { label: "Certifications", items: ["RNCP Niveau 7 Data Scientist — CentraleSupélec / OpenClassrooms", "Building AI Agents and Agentic Workflows — IBM"] },
                 testimonials: {
@@ -770,6 +770,7 @@
             document.getElementById('skills-sub').textContent = t.skills.sub;
             document.getElementById('projects-title').textContent = t.projects.title;
             document.getElementById('projects-sub').textContent = t.projects.sub;
+            document.getElementById('projects-badge').textContent = t.projects.badge;
             document.getElementById('exp-title').textContent = t.exp.title;
             document.getElementById('certs-label').textContent = t.certs.label;
             document.getElementById('testimonials-title').textContent = t.testimonials.title;
@@ -844,7 +845,7 @@
                 const card = document.createElement('button');
                 card.type = 'button';
                 card.className = `project-card block w-full text-left p-4 rounded-lg bg-white border border-slate-100 cursor-pointer hover:shadow-md transition group`;
-                card.addEventListener('click', () => loadProject(index));
+                card.addEventListener('click', () => loadProject(index, true));
                 card.id = `card-${index}`;
                 card.setAttribute('aria-controls', 'project-detail');
                 card.setAttribute('aria-pressed', 'false');
@@ -862,7 +863,7 @@
             });
         }
 
-        function loadProject(index) {
+        function loadProject(index, userInitiated = false) {
             const data = content[currentLang].projects_data[index];
             const t = content[currentLang].projects;
             currentProject = index;
@@ -880,7 +881,7 @@
 
             // Banner
             const banner = document.getElementById('detail-banner');
-            banner.className = `rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br ${data.banner}`;
+            banner.className = `shrink-0 rounded-t-2xl h-32 sm:h-36 flex items-center justify-between px-8 relative overflow-hidden bg-gradient-to-br ${data.banner}`;
             document.getElementById('detail-icon').className = `ph ${data.icon} text-white/20 text-[7rem] absolute -right-2 -bottom-4`;
             document.getElementById('detail-icon').setAttribute('aria-hidden', 'true');
 
@@ -919,6 +920,10 @@
                 `;
                 statsContainer.appendChild(div);
             });
+
+            if (userInitiated && window.innerWidth < 1024) {
+                document.getElementById('project-detail').scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth', block: 'start' });
+            }
 
             // Links
             const linksContainer = document.getElementById('detail-links');
